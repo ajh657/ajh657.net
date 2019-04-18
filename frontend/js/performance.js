@@ -1,14 +1,9 @@
-//Intialiazation 
-var cpuRadialObj = radialIndicator('#cpuRadialObj', {
-    barColor: {
-        0: '#00ff00',
-        50: '#ffff00',
-        90: '#ff0000'
-    },
-    barWidth : 10,
-    barLength: 10,
-    initValue : 0
-}); 
- 
-//Using Instance
-cpuRadialObj.animate(60); 
+var cpuKnob = pureknob.createKnob(300, 300);
+
+cpuKnob.setProperty(propertyName, value);
+myKnob.setValue(70);
+myKnob.setPeaks([100]);
+
+var node = knob.node();
+var elem = document.getElementById('cpuKnob');
+elem.appendChild(node);
