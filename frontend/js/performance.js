@@ -1,6 +1,6 @@
 var cpuKnob = pureknob.createKnob(300, 300);
 
-cpuKnob.setProperty(propertyName, value);
+cpuKnob.setProperty('cpu', 0);
 myKnob.setValue(70);
 myKnob.setPeaks([100]);
 
