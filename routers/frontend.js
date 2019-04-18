@@ -12,6 +12,16 @@ router.get('/', (req,res) => {
     res.sendFile(frontpagePath);
 })
 
+router.get('/robots.txt', (req,res) => {
+    var robotsPath = path.resolve(__dirname + '/../frontend/robots.txt')
+
+    console.log('Robots.txt requested');
+    console.log('Requester ip: ' + req.ip);
+    console.log();
+
+    res.sendFile(robotsPath);
+})
+
 router.get('/:file', (req,res) => {
     var htmlPath = path.resolve(__dirname + '/../frontend/html/' + req.params.file + ".html")
 
