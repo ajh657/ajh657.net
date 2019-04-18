@@ -2,6 +2,7 @@ const express = require('express');
 const os = require('os');
 
 var router = express.Router();
+var startMeasure = cpuAverage();
 
 router.get('/', (req, res) => {
   res.send('Access Denied')
@@ -24,6 +25,7 @@ module.exports = router;
 
 function LoadAvg() {
     //Grab second Measure
+    
     var endMeasure = cpuAverage(); 
 
     //Calculate the difference in idle and total time between the measures
