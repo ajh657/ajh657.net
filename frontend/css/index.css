@@ -5,6 +5,6 @@ html,body{
 
 .col{
     background: rgb(100, 100, 100);
-    width: 60%;
-    height: 80%;
+    width: 60% !important;
+    height: 80% !important; 
 }
