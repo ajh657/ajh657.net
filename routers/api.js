@@ -9,11 +9,11 @@ router.get('/', (req, res) => {
 
 router.get('/stats', (req,res) => {
     var stats = {
-        "cpu": os.loadavg,
-        "patform": os.platform,
-        "uptime": os.uptime,
+        "cpu": os.loadavg(),
+        "patform": os.platform(),
+        "uptime": os.uptime(),
         "ramTotal": os.ramTotal,
-        "ramFree": os.freemem
+        "ramFree": os.freemem()
     }
     res.json(JSON.stringify(stats));
 });
