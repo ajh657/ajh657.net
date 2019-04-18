@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 router.post('/', (req,res) => {
     data.set(req.body.repository.name, JSON.stringify(req.body));
     gitHandler(req.body);
-    console.log(data.get('test'));
+    console.log(req.body.repository.name);
     console.log();
     res.status(202).send('Logged');
 });
