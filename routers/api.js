@@ -12,7 +12,7 @@ router.get('/stats', (req,res) => {
         "cpu": os.loadavg(),
         "patform": os.platform(),
         "uptime": os.uptime(),
-        "ramTotal": os.ramTotal,
+        "ramTotal": os.totalmem(),
         "ramFree": os.freemem()
     }
     console.log(stats);
