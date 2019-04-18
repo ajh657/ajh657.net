@@ -20,12 +20,12 @@ var opts = {
         {strokeStyle: "#00FFFF", min: 150, max: 220}, // Green
         {strokeStyle: "#FFDD00", min: 220, max: 260}, // Yellow
         {strokeStyle: "#FF0000", min: 260, max: 300}  // Red
-    ],
-
-};
-var target = document.getElementById('cpu'); // your canvas element
-var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-gauge.maxValue = 300; // set max gauge value
-gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
-gauge.animationSpeed = 50; // set animation speed (32 is default value)
-gauge.set(20); // set actual value 
+     ],
+    
+  };
+  var target = document.getElementById('cpu'); // your canvas element
+  var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+  gauge.maxValue = 300; // set max gauge value
+  gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+  gauge.animationSpeed = 50; // set animation speed (32 is default value)
+  gauge.set(20); // set actual value
