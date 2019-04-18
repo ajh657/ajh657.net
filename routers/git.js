@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req,res) => {
-    data.set('test', JSON.stringify(req.body));
+    data.set(req.body.repository.name, JSON.stringify(req.body));
     gitHandler(req.body);
     console.log(data.get('test'));
     console.log();
@@ -24,7 +24,10 @@ function gitHandler(body) {
         gitInit();
     }
     if (body.commits[0] != null) {
-        gitPull();
+        if(body.repository.name == "ajh657.net") {
+            console.log('Server Pulled')
+            gitPullServer();
+        }
     }
 }
 
@@ -32,6 +35,6 @@ function gitInit(body) {
     git(__dirname + '/../../apps').pull();
 }
 
-function gitPull(body) {
+function gitPullServer(body) {
     git(__dirname + '/..').pull();
 }
