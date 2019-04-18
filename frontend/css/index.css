@@ -16,11 +16,8 @@ html,body{
     border-radius: 3px;
 }
 .text{
-    background: #ffffff;
-    width: 120px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-0%);
 }
