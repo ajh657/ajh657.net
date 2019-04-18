@@ -1,6 +1,6 @@
 var opts = {
-    angle: 0, // The span of the gauge arc
-    lineWidth: 15, // The line thickness
+    angle: 0.15, // The span of the gauge arc
+    lineWidth: 0.44, // The line thickness
     radiusScale: 100, // Relative radius
     pointer: {
       length: 0.5, // // Relative to gauge radius
