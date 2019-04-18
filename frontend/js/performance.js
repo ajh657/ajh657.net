@@ -1,4 +1,4 @@
-var radialOBJCPU = $('#cpu').radialIndicator('#cpu', {
+var radialOBJCPU = radialIndicator('#cpu', {
     barColor : '#87CEEB',
     barWidth : 10,
     initValue : 1,
