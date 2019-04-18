@@ -20,7 +20,7 @@ router.post('/', (req,res) => {
 module.exports = router;
 
 function gitHandler(body) {
-    if (body.hook.events[0] != null) {
+    if (body.hook != null) {
         gitInit();
     }
     if (body.commits[0] != null) {
