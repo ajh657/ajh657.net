@@ -6,6 +6,8 @@ const app = express();
 const port = 80;
 
 app.use(bodyParser.json());
-app.use(subdomain('git', require('./routers/git')))
+app.use(subdomain('git', require('./routers/git')));
+
+app.use('/', require('./routers/frontend'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
