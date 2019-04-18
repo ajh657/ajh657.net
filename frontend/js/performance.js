@@ -1,4 +1,4 @@
-var radialObj = radialIndicator('#indicatorContainer', {
+var radialObj = radialIndicator('#cpu', {
     barColor : '#87CEEB',
     barWidth : 10,
     initValue : 40,
