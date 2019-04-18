@@ -7,6 +7,7 @@ const port = 80;
 
 app.use(bodyParser.json());
 app.use(subdomain('git', require('./routers/git')));
+app.use(subdomain('api', require('./routers/api')));
 
 app.use('/', require('./routers/frontend'));
 

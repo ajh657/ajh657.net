@@ -8,8 +8,8 @@ var radialOBJCPU = $('#cpu').radialIndicator('#cpu', {
 });
 
 setInterval(function () {
-    $.get('').done(function (data) {
-        var parsedData = JSON.stringify(data);
-        radialOBJCPU.animate(parsedData.cpu);
+    $.get('http://api.ajh657.net/stats').done(function (data) {
+        var parsedData = JSON.parse(data);
+        radialOBJCPU.animate(parsedData.cpu[0]);
     });
 })
