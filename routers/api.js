@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   res.send('Access Denied')
 })
 
-router.post('/stats', (req,res) => {
+router.get('/stats', (req,res) => {
     var stats = {
         cpu: os.loadavg,
         patform: os.platform,
