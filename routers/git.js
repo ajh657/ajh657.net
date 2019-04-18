@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req,res) => {
     data.set('test', JSON.stringify(req.body));
+    console.log(data.get());
     res.status(202).send('Logged');
 });
 
