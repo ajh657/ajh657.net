@@ -1,5 +1,5 @@
 var g = new JustGage({
-    id: "cpuMeter",
+    id: "cpu",
     value: 1,
     min: 0,
     max: 100,
