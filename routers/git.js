@@ -11,8 +11,20 @@ router.get('/', (req, res) => {
 
 router.post('/', (req,res) => {
     data.set('test', JSON.stringify(req.body));
+    gitHandler(req.body);
     console.log(data.get('test'));
+    console.log();
     res.status(202).send('Logged');
 });
 
 module.exports = router;
+
+function gitHandler(body) {
+    if (body.hook.events[0] != null) {
+        gitInit();
+    }
+}
+
+function gitInit(body) {
+    
+}

@@ -3,5 +3,6 @@
         ".git",
         "node_modules/**/node_modules",
         "data/*"
-    ]
+    ],
+    "delay":"40"
 }
