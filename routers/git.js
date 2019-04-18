@@ -23,8 +23,15 @@ function gitHandler(body) {
     if (body.hook.events[0] != null) {
         gitInit();
     }
+    if (body.commits[0] != null) {
+        gitPull();
+    }
 }
 
 function gitInit(body) {
-    
+    git(__dirname + '/../../apps').pull();
+}
+
+function gitPull(body) {
+    git(__dirname + '/..').pull();
 }
