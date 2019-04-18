@@ -16,7 +16,7 @@ router.get('/stats', (req,res) => {
         "ramFree": os.freemem()
     }
     console.log(stats);
-    res.json(JSON.stringify(stats));
+    res.send(stats);
 });
 
 module.exports = router;
