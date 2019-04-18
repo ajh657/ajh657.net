@@ -9,7 +9,7 @@ router.get('/', (req,res) => {
     console.log('Requester ip: ' + req.ip);
     console.log();
 
-    res.sendFile(htmlPath);
+    res.sendFile(frontpagePath);
 })
 
 router.get('/:file', (req,res) => {
