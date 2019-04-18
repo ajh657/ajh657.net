@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req,res) => {
     data.Store('test', JSON.stringify(req.body))
+    res.status(202).send('Logged');
 });
 
 module.exports = router;
