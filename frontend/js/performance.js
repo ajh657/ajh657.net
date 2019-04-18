@@ -14,7 +14,7 @@ var opts = {
     //strokeColor: '#E0E0E0',  // to see which ones work best for you
     //generateGradient: true,
     highDpiSupport: true,     // High resolution support
-    percentColors = [[0.0, "00ff00" ], [0.75, "#ffff00"], [1.0, "#ff0000"]],
+    percentColors: [[0.0, "00ff00" ], [0.75, "#ffff00"], [1.0, "#ff0000"]],
     
 };
 
