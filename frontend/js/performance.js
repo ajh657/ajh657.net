@@ -7,9 +7,9 @@ var radialOBJCPU = radialIndicator('#cpu', {
     roundCorner : true
 });
 
-setInterval(100, function () {
+setInterval(function () {
     radialOBJCPU.animate(JSON.parse(httpGet('api.ajh657.net/stats')).cpu[0]);
-})
+}, 100)
 
 function httpGet(theUrl)
 {
