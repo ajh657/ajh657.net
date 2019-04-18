@@ -1,4 +1,4 @@
-var radialObjold = radialIndicator('#cpu', {
+$('#cpu').radialIndicator('#cpu', {
     barColor : '#87CEEB',
     barWidth : 10,
     initValue : 40,
