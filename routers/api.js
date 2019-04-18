@@ -15,6 +15,7 @@ router.get('/stats', (req,res) => {
         "ramTotal": os.ramTotal,
         "ramFree": os.freemem()
     }
+    console.log(stats);
     res.json(JSON.stringify(stats));
 });
 
