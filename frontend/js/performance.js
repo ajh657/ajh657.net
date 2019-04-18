@@ -6,7 +6,7 @@ var cpuRadialObj = radialIndicator('#cpuRadialObj', {
         90: '#ff0000'
     },
     barWidth : 10,
-    initValue : 40
+    initValue : 0
 }); 
  
 //Using Instance
