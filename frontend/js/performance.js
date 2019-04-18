@@ -7,9 +7,14 @@ var radialOBJCPU = radialIndicator('#cpu', {
     roundCorner : true
 });
 
-setInterval(function () {
-    $.get('http://api.ajh657.net/stats').done(function (data) {
-        var parsedData = JSON.parse(data);
-        radialOBJCPU.animate(parsedData.cpu[0]);
-    });
+setInterval(100, function () {
+    radialOBJCPU.animate(JSON.parse(httpGet('api.ajh657.net/stats')).cpu[0]);
 })
+
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
