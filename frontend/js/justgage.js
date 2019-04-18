@@ -18,6 +18,7 @@ JustGage = function(config) {
   var node;
 
   if (config.id !== null && config.id !== undefined) {
+    console.log(config);
     node = document.getElementById(config.id);
     if (!node) {
       console.log('* justgage: No element with id : %s found', config.id);
