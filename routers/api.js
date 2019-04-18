@@ -16,6 +16,7 @@ router.get('/stats', (req,res) => {
         "ramFree": os.freemem()
     }
     console.log(stats);
+    res.setHeader('Content-Type', 'application/json');
     res.send(stats);
 });
 
