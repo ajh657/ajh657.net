@@ -8,7 +8,7 @@ var radialOBJCPU = radialIndicator('#cpu', {
 });
 
 setInterval(function () {
-    var httpdata = httpGet('api.ajh657.net/stats');
+    var httpdata = httpGet('http://api.ajh657.net/stats');
     console.log(httpdata);
     var parsedData = JSON.parse(httpdata);
 
