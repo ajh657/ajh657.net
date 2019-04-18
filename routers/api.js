@@ -15,7 +15,7 @@ router.get('/stats', (req,res) => {
         "ramTotal": os.ramTotal,
         "ramFree": os.freemem
     }
-    res.send(JSON.stringify(stats));
+    res.json(JSON.stringify(stats));
 });
 
 module.exports = router;
