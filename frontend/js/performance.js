@@ -13,14 +13,14 @@ var opts = {
     //colorStop: '#8FC0DA',    // just experiment with them
     //strokeColor: '#E0E0E0',  // to see which ones work best for you
     //generateGradient: true,
-    highDpiSupport: true,     // High resolution support
-    percentColors: [[0.0, "00ff00" ], [0.75, "#ffff00"], [1.0, "#ff0000"]],
+    highDpiSupport: true    // High resolution support
     
 };
 
 var target = document.getElementById('cpu'); // your canvas element
 var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
 
+gauge.percentColors = [[0.0, "#a9d70b" ], [0.75, "#f9c802"], [1.0, "#ff0000"]];
 gauge.maxValue = 100; // set max gauge value
 
 gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
