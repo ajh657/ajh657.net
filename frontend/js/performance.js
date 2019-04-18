@@ -11,7 +11,7 @@ var opts = {
     limitMin: false,     // If true, the min value of the gauge will be fixed
     //colorStart: '#6FADCF',   // Colors
     //colorStop: '#8FC0DA',    // just experiment with them
-    percentColors = [[0.0, "#00ff00" ], [0.80, "#ffff00"], [1.0, "#ff0000"]],
+    percentColors: [[0.0, "#00ff00" ], [0.80, "#ffff00"], [1.0, "#ff0000"]],
     strokeColor: '#E0E0E0',  // to see which ones work best for you
     generateGradient: true,
     highDpiSupport: true,     // High resolution support
