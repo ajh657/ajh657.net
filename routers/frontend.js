@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const Store = require('data-store');
+
+const data = new Store({ path: __dirname + '/../data/visits.json'});
 const path = require('path');
 
 router.get('/', (req,res) => {
@@ -7,7 +10,10 @@ router.get('/', (req,res) => {
 
     console.log('Fontpage requested');
     console.log('Requester ip: ' + req.ip);
+    console.log(new Date().toLocaleString());
     console.log();
+
+    data.set('visits', data.get('visits') + 1)
 
     res.sendFile(frontpagePath);
 })
@@ -17,6 +23,7 @@ router.get('/robots.txt', (req,res) => {
 
     console.log('Robots.txt requested');
     console.log('Requester ip: ' + req.ip);
+    console.log(new Date().toLocaleString());
     console.log();
 
     res.sendFile(robotsPath);
@@ -27,7 +34,10 @@ router.get('/:file', (req,res) => {
 
     console.log('Page: ' + req.params.file +' Requested');
     console.log('Requester ip: ' + req.ip);
+    console.log(new Date().toLocaleString());
     console.log();
+
+    data.set('visits', data.get('visits') + 1);
 
     res.sendFile(htmlPath);
 })
@@ -37,6 +47,7 @@ router.get('/js/:file', (req,res) => {
 
     console.log('File: ' + req.params.file +' Requested');
     console.log('Requester ip: ' + req.ip);
+    console.log(new Date().toLocaleString());
     console.log();
 
     res.sendFile(jsPath);
@@ -47,6 +58,7 @@ router.get('/css/:file', (req,res) => {
 
     console.log('File: ' + req.params.file +' Requested');
     console.log('Requester ip: ' + req.ip);
+    console.log(new Date().toLocaleString());
     console.log();
 
     res.sendFile(cssPath);

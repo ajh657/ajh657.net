@@ -1,6 +1,6 @@
 const express = require('express');
 const git = require('simple-git');
-const Store = require('data-store')
+const Store = require('data-store');
 const data = new Store({ path: __dirname + '/../data/git.json'});
 
 var router = express.Router();
