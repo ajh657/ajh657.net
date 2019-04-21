@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Store = require('data-store');
+const fs = require('fs');
 
 const data = new Store({ path: __dirname + '/../data/visits.json'});
 const path = require('path');
@@ -37,6 +38,10 @@ router.get('/:file', (req,res) => {
     console.log(new Date().toLocaleString());
     console.log();
 
+    
+
+    if(!fs.existsSync(htmlPath)) res.status(404).send('File not found');
+
     data.set('visits', data.get('visits') + 1);
 
     res.sendFile(htmlPath);
@@ -50,6 +55,8 @@ router.get('/js/:file', (req,res) => {
     console.log(new Date().toLocaleString());
     console.log();
 
+    if(!fs.existsSync(jsPath)) res.status(404).send('File not found');
+
     res.sendFile(jsPath);
 })
 
@@ -60,6 +67,8 @@ router.get('/css/:file', (req,res) => {
     console.log('Requester ip: ' + req.ip);
     console.log(new Date().toLocaleString());
     console.log();
+
+    if(!fs.existsSync(cssPath)) res.status(404).send('File not found');
 
     res.sendFile(cssPath);
 })
