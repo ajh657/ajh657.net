@@ -105,7 +105,7 @@ function ban(ip,res) {
 }
 
 function ifAllowed(ip) {
-    var banned = false
+    var banned = false;
     var bannedList = bans.get('bans');
     for (let index = 0; index < bannedList.length; index++) {
         const element = bannedList[index];
