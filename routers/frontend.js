@@ -40,11 +40,13 @@ router.get('/:file', (req,res) => {
 
     
 
-    if(!fs.existsSync(htmlPath)) res.status(404).send('File not found');
-
-    data.set('visits', data.get('visits') + 1);
-
-    res.sendFile(htmlPath);
+    if(!fs.existsSync(htmlPath)) {
+        res.status(404).send('File not found')
+    } 
+    else {
+        data.set('visits', data.get('visits') + 1);
+        res.sendFile(htmlPath);
+    }
 })
 
 router.get('/js/:file', (req,res) => {
@@ -55,9 +57,12 @@ router.get('/js/:file', (req,res) => {
     console.log(new Date().toLocaleString());
     console.log();
 
-    if(!fs.existsSync(jsPath)) res.status(404).send('File not found');
-
-    res.sendFile(jsPath);
+    if(!fs.existsSync(jsPath)) {
+        res.status(404).send('File not found');
+    }
+    else {
+        res.sendFile(jsPath);
+    }
 })
 
 router.get('/css/:file', (req,res) => {
@@ -68,9 +73,12 @@ router.get('/css/:file', (req,res) => {
     console.log(new Date().toLocaleString());
     console.log();
 
-    if(!fs.existsSync(cssPath)) res.status(404).send('File not found');
-
-    res.sendFile(cssPath);
+    if(!fs.existsSync(cssPath)) {
+        res.status(404).send('File not found');
+    }
+    else {
+        res.sendFile(cssPath);
+    }
 })
 
 module.exports = router;
