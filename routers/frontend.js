@@ -4,6 +4,7 @@ const Store = require('data-store');
 const fs = require('fs');
 
 const data = new Store({ path: __dirname + '/../data/visits.json'});
+const bans = new Store({ path: __dirname + '/../data/bans.json'});
 const path = require('path');
 
 router.get('/', (req,res) => {
@@ -31,6 +32,11 @@ router.get('/robots.txt', (req,res) => {
 })
 
 router.get('/:file', (req,res) => {
+
+    if(ifAllowed(req.ip)) res.status(403).send('Forbidden');
+
+    if(req.params.file.charAt(0) = ".") ban(req.ip, res);
+
     var htmlPath = path.resolve(__dirname + '/../frontend/html/' + req.params.file + ".html")
 
     console.log('Page: ' + req.params.file +' Requested');
@@ -82,3 +88,24 @@ router.get('/css/:file', (req,res) => {
 })
 
 module.exports = router;
+
+function ban(ip,res) {
+    var array = bans.get('bans');
+    array[array.length] = ip;
+    bans.set('bans', array);
+
+    console.log(" IP banned: " + ip);
+    res.status(403).send('Forbidden');
+}
+
+function ifAllowed(ip) {
+    var banned = false
+    var bannedList = bans.get('bans');
+    for (let index = 0; index < bannedList.length; index++) {
+        const element = bannedList[index];
+        
+        if(element = ip) banned = true;
+    }
+
+    return banned;
+}
