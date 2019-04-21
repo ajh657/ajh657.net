@@ -33,11 +33,13 @@ router.get('/robots.txt', (req,res) => {
 
 router.get('/:file', (req,res) => {
 
+    var file = req.params.file;
+
     if(ifAllowed(req.ip)) res.status(403).send('Forbidden');
 
-    if(req.params.file.charAt(0) = ".") ban(req.ip, res);
+    if(file.charAt(0) = ".") ban(req.ip, res);
 
-    var htmlPath = path.resolve(__dirname + '/../frontend/html/' + req.params.file + ".html")
+    var htmlPath = path.resolve(__dirname + '/../frontend/html/' + file + ".html")
 
     console.log('Page: ' + req.params.file +' Requested');
     console.log('Requester ip: ' + req.ip);
