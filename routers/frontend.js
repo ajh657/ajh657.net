@@ -35,25 +35,29 @@ router.get('/:file', (req,res) => {
 
     var file = req.params.file;
 
-    if(ifAllowed(req.ip)) res.status(403).send('Forbidden');
+    if(ifAllowed(req.ip)) {
+        res.status(403).send('Forbidden')
+    }
+    else {
+        
+        if(file.charAt(0) == ".") ban(req.ip, res);
 
-    if(file.charAt(0) == ".") ban(req.ip, res);
+        var htmlPath = path.resolve(__dirname + '/../frontend/html/' + file + ".html")
 
-    var htmlPath = path.resolve(__dirname + '/../frontend/html/' + file + ".html")
-
-    console.log('Page: ' + req.params.file +' Requested');
-    console.log('Requester ip: ' + req.ip);
-    console.log(new Date().toLocaleString());
-    console.log();
+        console.log('Page: ' + req.params.file +' Requested');
+        console.log('Requester ip: ' + req.ip);
+        console.log(new Date().toLocaleString());
+        console.log();
 
     
 
-    if(!fs.existsSync(htmlPath)) {
-        res.status(404).send('File not found')
-    } 
-    else {
-        data.set('visits', data.get('visits') + 1);
-        res.sendFile(htmlPath);
+        if(!fs.existsSync(htmlPath)) {
+            res.status(404).send('File not found')
+        } 
+        else {
+            data.set('visits', data.get('visits') + 1);
+            res.sendFile(htmlPath);
+        }
     }
 })
 
