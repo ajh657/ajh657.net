@@ -47,6 +47,7 @@ var cpuChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true}),
     cpuSeries = new TimeSeries();
 
 cpuChart.addTimeSeries(cpuSeries, {lineWidth:2,strokeStyle:'#0080ff'});
+cpuChart.streamTo(cpuCanvas, 1000);
 //chart.streamTo(canvas, 500);
 
 setInterval(function () {
@@ -60,5 +61,5 @@ setInterval(function () {
     var cpu = cpu * 100;
     var cpu = cpu.toFixed(2);
 
-    cpuChart.streamTo(cpuCanvas, cpu);
+    cpuSeries.append(new Date().getTime(), cpu)
 }, 800)
