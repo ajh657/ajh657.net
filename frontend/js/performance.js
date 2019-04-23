@@ -69,7 +69,7 @@ setInterval(function () {
     var cpu = cpu.toFixed(2);
 
     var cpuText = document.getElementById('cpuLoad');
-    cpuText.textContent = cpu;
+    cpuText.textContent = "Cpu Load: " + cpu;
 
     cpuSeries.append(new Date().getTime(), cpu)
 }, 800)
