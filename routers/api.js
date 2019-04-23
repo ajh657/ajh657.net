@@ -1,8 +1,8 @@
 const express = require('express');
 const os = require('os');
-var cpuu = require('cputilization');
+const cpuu = require('cputilization');
 
-
+var smapler = cpuu({intercal:200});
 var router = express.Router();
 var cpuUtilization = 0;
 
@@ -25,7 +25,7 @@ router.post('/stats', (req,res) => {
 
 module.exports = router;
 
-cpuu({timeout: 500}, function(error, sample) {
+sampler.on('sample', function(sample) {
   cpuUtilization = sample.percentageBusy();
   console.log(cpuUtilization);
   console.log();
