@@ -2,7 +2,6 @@ const express = require('express');
 const os = require('os');
 
 var router = express.Router();
-var startMeasure = cpuAverage();
 
 router.get('/', (req, res) => {
   res.send('Access Denied')
