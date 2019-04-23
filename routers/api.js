@@ -27,6 +27,4 @@ module.exports = router;
 
 sampler.on('sample', function(sample) {
   cpuUtilization = sample.percentageBusy();
-  console.log(cpuUtilization);
-  console.log();
 });
