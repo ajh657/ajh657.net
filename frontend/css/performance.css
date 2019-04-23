@@ -18,6 +18,11 @@ html,body{
 .cpu,canvas{
     margin-top: 2%;
 }
+
+.ram{
+    margin-top: 2%;
+}
+
 .cputext{
     text-align: center;
 }

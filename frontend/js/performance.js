@@ -8,15 +8,29 @@ var radialOBJCPU = radialIndicator('#cpu', {
     roundCorner : true
 });
 
+var radialOBJRAM = radialIndicator('#ram', {
+    barColor : '#00ff00',
+    barWidth : 10,
+    initValue : 1,
+    minValue : 0,
+    maxValue : 100,
+    percentage : true,
+    roundCorner : true
+});
+
 setInterval(function () {
     var httpdata = httpGet('http://api.ajh657.net/stats');
     var parsedData = JSON.parse(httpdata);
+
+    var ram = 100 - ((parsedData.ramFree / parsedData.ramTotal) * 100);
+    var ram = ram.toFixed(2);
+
     var cpu = parsedData.cpu;
     var cpu = cpu * 100;
     var cpu = cpu.toFixed(2);
 
+    radialOBJCPU.animate(ram);
     radialOBJCPU.animate(cpu);
-    console.log(cpu);
 }, 800)
 
 function httpGet(theUrl)
