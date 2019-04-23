@@ -8,16 +8,22 @@ const bans = new Store({ path: __dirname + '/../data/bans.json'});
 const path = require('path');
 
 router.get('/', (req,res) => {
-    var frontpagePath = path.resolve(__dirname + '/../frontend/html/index.html')
 
-    console.log('Fontpage requested');
-    console.log('Requester ip: ' + req.ip);
-    console.log(new Date().toLocaleString());
-    console.log();
+    if(ifAllowed(req.ip)) {
+        res.status(403).send('Forbidden');
+    }
+    else {
+        var frontpagePath = path.resolve(__dirname + '/../frontend/html/index.html')
 
-    data.set('visits', data.get('visits') + 1)
+        console.log('Fontpage requested');
+        console.log('Requester ip: ' + req.ip);
+        console.log(new Date().toLocaleString());
+        console.log();
 
-    res.sendFile(frontpagePath);
+        data.set('visits', data.get('visits') + 1)
+
+        res.sendFile(frontpagePath);
+    }
 })
 
 router.get('/robots.txt', (req,res) => {
@@ -36,7 +42,7 @@ router.get('/:file', (req,res) => {
     var file = req.params.file;
 
     if(ifAllowed(req.ip)) {
-        res.status(403).send('Forbidden')
+        res.status(403).send('Forbidden');
     }
     else {
         
