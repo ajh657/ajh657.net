@@ -8,32 +8,18 @@
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel='stylesheet' type='text/css' media='screen' href='/css/performance.css'>
+        <link rel='stylesheet' type='text/css' media='screen' href='/css/Chart.css'>
 
-        <script src="/js/jquery-3.4.0.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     </head>
     <body>
-        <!--<div class="h-100 row align-items-center">
-            <div class="col">
-                <div class="cpu" id="cpu">
-
-                </div>
-                <div class="ram" id="ram">
-
-                </div>
-                <p class="cputext">CPU</p>
-            </div>
-          </div> -->
-
         <div class="container h-100 d-flex">
             <div class="jumbotron my-auto">
-            <canvas id="cpu-chart" width="500" height="100"></canvas>
-            
-            </div>
+                <canvas id="cpuChart" width="500" height="400"></canvas>
         </div>
     </body>
 
-    <script src='/js/smoothie.js'></script>
+    <script src='/js/Chart.bundle.js'></script>
     <script src='/js/performance.js'></script>
 </html>
