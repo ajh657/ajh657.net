@@ -47,6 +47,7 @@ function httpGet(theUrl)
 function addData(chart, data) {
     chart.data.datasets.forEach((dataset) => {
         dataset.data.push(data);
+        console.log(data);
     });
     chart.update();
 }
