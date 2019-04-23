@@ -16,9 +16,6 @@ html,body{
     border-radius: 3px;
 }
 .radial{
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
     top: 15%;
     left: 10%;
 }
