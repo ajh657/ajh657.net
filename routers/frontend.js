@@ -40,23 +40,26 @@ router.get('/:file', (req,res) => {
     }
     else {
         
-        if(file.charAt(0) == ".") ban(req.ip, res);
+        if(file.charAt(0) == ".") {
+            ban(req.ip, res)
+        }
+        else {
+            var htmlPath = path.resolve(__dirname + '/../frontend/html/' + file + ".html")
 
-        var htmlPath = path.resolve(__dirname + '/../frontend/html/' + file + ".html")
-
-        console.log('Page: ' + req.params.file +' Requested');
-        console.log('Requester ip: ' + req.ip);
-        console.log(new Date().toLocaleString());
-        console.log();
+            console.log('Page: ' + req.params.file +' Requested');
+            console.log('Requester ip: ' + req.ip);
+            console.log(new Date().toLocaleString());
+            console.log();
 
     
 
-        if(!fs.existsSync(htmlPath)) {
-            res.status(404).send('File not found')
-        } 
-        else {
-            data.set('visits', data.get('visits') + 1);
-            res.sendFile(htmlPath);
+            if(!fs.existsSync(htmlPath)) {
+                res.status(404).send('File not found')
+            } 
+            else {
+                data.set('visits', data.get('visits') + 1);
+                res.sendFile(htmlPath);
+            }
         }
     }
 })
@@ -108,7 +111,7 @@ function ifAllowed(ip) {
     var banned = false;
     var bannedList = bans.get('bans');
     for (let index = 0; index < bannedList.length; index++) {
-        const element = bannedList[index];
+        var element = bannedList[index];
         
         if(element == ip) banned = true;
     }
