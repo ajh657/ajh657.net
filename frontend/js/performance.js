@@ -42,11 +42,18 @@ function httpGet(theUrl)
     return xmlHttp.responseText;
 }
 
+function myYRangeFunction(range) {
+    // TODO implement your calculation using range.min and range.max
+    var min = 0;
+    var max = 100;
+    return {min: min, max: max};
+  }
+
 var cpuChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true}),
     cpuCanvas = document.getElementById('cpu-chart'),
     cpuSeries = new TimeSeries();
 
-cpuChart.addTimeSeries(cpuSeries, {lineWidth:2,strokeStyle:'#0080ff',maxValue:100});
+cpuChart.addTimeSeries(cpuSeries, {lineWidth:2,strokeStyle:'#0080ff',maxValue:100,minValue:0,});
 cpuChart.streamTo(cpuCanvas, 1000);
 //chart.streamTo(canvas, 500);
 
