@@ -15,7 +15,7 @@ html,body{
     background-color: #ccc;
     border-radius: 3px;
 }
-canvas{
+.radial{
     top: 15%;
     left: 10%;
 }
