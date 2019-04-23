@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Store = require('data-store');
 const fs = require('fs');
+const fileList = require('../data/fileList.json');
 
 const data = new Store({ path: __dirname + '/../data/visits.json'});
 const bans = new Store({ path: __dirname + '/../data/bans.json'});
@@ -115,6 +116,15 @@ router.get('/css/:file', (req,res) => {
 })
 
 module.exports = router;
+
+function bannableFile(file) {
+    var nono = false;
+    for (let i = 0; i < fileList.list.length; i++) {
+        var element = fileList.list[i];
+        if(element == file) nono = true;
+    }
+    return nono;
+}
 
 function ban(ip,res) {
     var array = bans.get('bans');
