@@ -34,8 +34,6 @@ setInterval(function () {
 }, 800)
 */
 
-var cpuCtx = document.getElementById('cpuChart');
-
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -44,27 +42,20 @@ function httpGet(theUrl)
     return xmlHttp.responseText;
 }
 
-function addData(chart, data) {
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-        console.log(data);
-    });
-    chart.update();
-}
+function myYRangeFunction(range) {
+    // TODO implement your calculation using range.min and range.max
+    var min = 0;
+    var max = 100;
+    return {min: min, max: max};
+  }
 
-var cpuChart = new Chart(cpuCtx, {
-    type: 'line',
-    data: [],
-    options: {
-        elements: {
-            line: {
-                tension: 0 // disables bezier curves
-            }
-        }
-    }
-});
+var cpuChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true}),
+    cpuCanvas = document.getElementById('cpu-chart'),
+    cpuSeries = new TimeSeries();
 
-
+cpuChart.addTimeSeries(cpuSeries, {lineWidth:2,strokeStyle:'#0080ff',maxValue:100,minValue:0,});
+cpuChart.streamTo(cpuCanvas, 1000);
+//chart.streamTo(canvas, 500);
 
 setInterval(function () {
     var httpdata = httpGet('http://api.ajh657.net/stats');
@@ -77,5 +68,5 @@ setInterval(function () {
     var cpu = cpu * 100;
     var cpu = cpu.toFixed(2);
 
-    addData(cpuChart, cpu)
+    cpuSeries.append(new Date().getTime(), cpu)
 }, 800)
