@@ -67,7 +67,7 @@ setInterval(function () {
     var httpdata = httpGet('http://api.ajh657.net/stats');
     var parsedData = JSON.parse(httpdata);
 
-    var ram = (parsedData.ramFree / parsedData.ramTotal) * 100;
+    var ram = (parsedData.ramFree / parsedData.ramTotal) * 10;
     var ram = ram.toFixed(2);
 
     var cpu = parsedData.cpu;
