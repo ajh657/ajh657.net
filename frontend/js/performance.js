@@ -44,8 +44,7 @@ function httpGet(theUrl)
     return xmlHttp.responseText;
 }
 
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
+function addData(chart, data) {
     chart.data.datasets.forEach((dataset) => {
         dataset.data.push(data);
     });
@@ -77,5 +76,5 @@ setInterval(function () {
     var cpu = cpu * 100;
     var cpu = cpu.toFixed(2);
 
-    addData(cpuChart,null, cpu)
+    addData(cpuChart, cpu)
 }, 800)
