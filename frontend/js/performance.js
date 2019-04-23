@@ -49,7 +49,7 @@ function myYRangeFunction(range) {
     return {min: min, max: max};
   }
 
-var cpuChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true}),
+var cpuChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true,maxValue:100, minValue:0}),
     cpuCanvas = document.getElementById('cpu-chart'),
     cpuSeries = new TimeSeries();
 
