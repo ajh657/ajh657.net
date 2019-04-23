@@ -2,7 +2,7 @@ const express = require('express');
 const os = require('os');
 const cpuu = require('cputilization');
 
-var smapler = cpuu({intercal:200});
+var sampler = cpuu({intercal:200});
 var router = express.Router();
 var cpuUtilization = 0;
 
