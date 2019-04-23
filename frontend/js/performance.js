@@ -2,7 +2,7 @@ var radialOBJCPU = radialIndicator('#cpu', {
     barColor : '#87CEEB',
     barWidth : 10,
     initValue : 1,
-    minValue : 1,
+    minValue : 0,
     maxValue : 100,
     percentage : true,
     roundCorner : true
