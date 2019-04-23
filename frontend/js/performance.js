@@ -46,7 +46,7 @@ var cpuChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true}),
     cpuCanvas = document.getElementById('cpu-chart'),
     cpuSeries = new TimeSeries();
 
-cpuChart.addTimeSeries(cpuSeries, {lineWidth:2,strokeStyle:'#0080ff'});
+cpuChart.addTimeSeries(cpuSeries, {lineWidth:2,strokeStyle:'#0080ff',maxValue:100});
 cpuChart.streamTo(cpuCanvas, 1000);
 //chart.streamTo(canvas, 500);
 
