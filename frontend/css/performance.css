@@ -15,7 +15,6 @@ html,body{
     background-color: #ccc;
     border-radius: 3px;
 }
-.cpu{
-    top: 15%;
-    left: 10%;
+.cpu,canvas{
+    margin-top: 2%;
 }
