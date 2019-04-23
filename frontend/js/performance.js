@@ -68,7 +68,7 @@ setInterval(function () {
     var parsedData = JSON.parse(httpdata);
 
     var ram = parsedData.ramTotal / parsedData.ramFree;
-    ram = ram * 100;
+    ram = ram * 1000;
     ram = ram.toFixed(2);
 
     var cpu = parsedData.cpu;
