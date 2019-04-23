@@ -67,12 +67,13 @@ setInterval(function () {
     var httpdata = httpGet('http://api.ajh657.net/stats');
     var parsedData = JSON.parse(httpdata);
 
-    var ram = (parsedData.ramFree / parsedData.ramTotal) * 10;
-    var ram = ram.toFixed(2);
+    var ram = parsedData.ramFree / parsedData.ramTotal;
+    ram = ram * 1000;
+    ram = ram.toFixed(2);
 
     var cpu = parsedData.cpu;
-    var cpu = cpu * 100;
-    var cpu = cpu.toFixed(2);
+    cpu = cpu * 100;
+    cpu = cpu.toFixed(2);
 
     var cpuText = document.getElementById('cpuLoad');
     cpuText.textContent = "Cpu Load: " + cpu;
