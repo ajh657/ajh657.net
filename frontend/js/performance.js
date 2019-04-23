@@ -13,7 +13,7 @@ setInterval(function () {
     var parsedData = JSON.parse(httpdata);
 
     radialOBJCPU.animate(Math.round(parsedData.cpu));
-}, 100)
+}, 800)
 
 function httpGet(theUrl)
 {
