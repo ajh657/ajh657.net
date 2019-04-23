@@ -1,7 +1,10 @@
 const express = require('express');
 const os = require('os');
+var cpuu = require('cputilization');
+
 
 var router = express.Router();
+var cpuUtilization = 0;
 
 router.get('/', (req, res) => {
   res.send('Access Denied')
@@ -9,7 +12,7 @@ router.get('/', (req, res) => {
 
 router.post('/stats', (req,res) => {
     var stats = {
-        "cpu": os.loadavg()[0],
+        "cpu": cpuUtilization,
         "patform": os.platform(),
         "uptime": os.uptime(),
         "ramTotal": os.totalmem(),
@@ -21,3 +24,7 @@ router.post('/stats', (req,res) => {
 });
 
 module.exports = router;
+
+cpuu(function(error, sample) {
+  cpuUtilization = sample.percentageBusy();
+});
