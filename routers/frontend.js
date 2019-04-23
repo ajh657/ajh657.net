@@ -10,6 +10,12 @@ const path = require('path');
 router.get('/', (req,res) => {
 
     if(ifAllowed(req.ip)) {
+
+        console.log('Banned ip reguested frontpage');
+        console.log('Requester ip: ' + req.ip);
+        console.log(new Date().toLocaleString());
+        console.log();
+
         res.status(403).send('Forbidden');
     }
     else {
@@ -42,6 +48,12 @@ router.get('/:file', (req,res) => {
     var file = req.params.file;
 
     if(ifAllowed(req.ip)) {
+
+        console.log('Banned ip reguested file: ' + file);
+        console.log('Requester ip: ' + req.ip);
+        console.log(new Date().toLocaleString());
+        console.log();
+
         res.status(403).send('Forbidden');
     }
     else {
