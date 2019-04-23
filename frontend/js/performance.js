@@ -80,7 +80,7 @@ setInterval(function () {
     cpuSeries.append(new Date().getTime(), cpu)
 
     var ramText = document.getElementById('ramLoad');
-    ramText.textContent = "Ram Usage: " + cpu;
+    ramText.textContent = "Ram Usage: " + ram;
 
     ramSeries.append(new Date().getTime(), ram)
 }, 800)
