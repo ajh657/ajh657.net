@@ -27,4 +27,6 @@ module.exports = router;
 
 cpuu({timeout: 500}, function(error, sample) {
   cpuUtilization = sample.percentageBusy();
+  console.log(cpuUtilization);
+  console.log();
 });
