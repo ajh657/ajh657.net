@@ -61,13 +61,13 @@ var ramChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true,maxValue:1
     ramSeries = new TimeSeries();
 
 ramChart.addTimeSeries(cpuSeries, {lineWidth:2,strokeStyle:'#00ff00',maxValue:100,minValue:0,});
-ramChart.streamTo(cpuCanvas, 1000);
+ramChart.streamTo(ramCanvas, 1000);
 
 setInterval(function () {
     var httpdata = httpGet('http://api.ajh657.net/stats');
     var parsedData = JSON.parse(httpdata);
 
-    var ram = 100 - ((parsedData.ramFree / parsedData.ramTotal) * 100);
+    var ram = 100 - ((parsedData.ramFree / parsedData.ramTotal) * 1000);
     var ram = ram.toFixed(2);
 
     var cpu = parsedData.cpu;
@@ -80,7 +80,7 @@ setInterval(function () {
     cpuSeries.append(new Date().getTime(), cpu)
 
     var ramText = document.getElementById('ramLoad');
-    ramText.textContent = "CRam Usage: " + cpu;
+    ramText.textContent = "Ram Usage: " + cpu;
 
     ramSeries.append(new Date().getTime(), ram)
 }, 800)
