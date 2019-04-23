@@ -60,7 +60,7 @@ var ramChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true,maxValue:1
     ramCanvas = document.getElementById('ram-chart'),
     ramSeries = new TimeSeries();
 
-ramChart.addTimeSeries(cpuSeries, {lineWidth:2,strokeStyle:'#00ff00',maxValue:100,minValue:0,});
+ramChart.addTimeSeries(ramSeries, {lineWidth:2,strokeStyle:'#00ff00',maxValue:100,minValue:0,});
 ramChart.streamTo(ramCanvas, 1000);
 
 setInterval(function () {
