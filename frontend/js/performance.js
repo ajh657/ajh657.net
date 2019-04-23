@@ -77,5 +77,5 @@ setInterval(function () {
     var cpu = cpu * 100;
     var cpu = cpu.toFixed(2);
 
-    addData(cpuChart,new Date.now, cpu)
+    addData(cpuChart,new Date().toLocaleDateString("fi-FI"), cpu)
 }, 800)
