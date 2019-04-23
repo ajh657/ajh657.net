@@ -25,6 +25,6 @@ router.post('/stats', (req,res) => {
 
 module.exports = router;
 
-cpuu(function(error, sample) {
+cpuu({timeout: 500}, function(error, sample) {
   cpuUtilization = sample.percentageBusy();
 });
