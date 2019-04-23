@@ -110,7 +110,7 @@ function ifAllowed(ip) {
     for (let index = 0; index < bannedList.length; index++) {
         const element = bannedList[index];
         
-        if(element = ip) banned = true;
+        if(element == ip) banned = true;
     }
 
     return banned;
