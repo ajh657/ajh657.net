@@ -68,5 +68,8 @@ setInterval(function () {
     var cpu = cpu * 100;
     var cpu = cpu.toFixed(2);
 
+    var cpuText = document.getElementById('cpuLoad');
+    cpuText.write(cpu);
+
     cpuSeries.append(new Date().getTime(), cpu)
 }, 800)
