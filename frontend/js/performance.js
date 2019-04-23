@@ -12,7 +12,7 @@ setInterval(function () {
     var httpdata = httpGet('http://api.ajh657.net/stats');
     var parsedData = JSON.parse(httpdata);
 
-    radialOBJCPU.animate(Math.round(parsedData.cpu));
+    radialOBJCPU.animate(Math.round(parsedData.cpu.toFixed(2)));
 }, 800)
 
 function httpGet(theUrl)
