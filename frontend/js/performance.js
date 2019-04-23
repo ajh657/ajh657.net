@@ -32,6 +32,7 @@ setInterval(function () {
     radialOBJCPU.animate(ram);
     radialOBJCPU.animate(cpu);
 }, 800)
+*/
 
 function httpGet(theUrl)
 {
@@ -40,4 +41,24 @@ function httpGet(theUrl)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
-*/
+
+var cpuChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true}),
+    cpuCanvas = document.getElementById('cpu-chart'),
+    cpuSeries = new TimeSeries();
+
+chart.addTimeSeries(series, {lineWidth:2,strokeStyle:'#0080ff'});
+//chart.streamTo(canvas, 500);
+
+setInterval(function () {
+    var httpdata = httpGet('http://api.ajh657.net/stats');
+    var parsedData = JSON.parse(httpdata);
+
+    var ram = 100 - ((parsedData.ramFree / parsedData.ramTotal) * 100);
+    var ram = ram.toFixed(2);
+
+    var cpu = parsedData.cpu;
+    var cpu = cpu * 100;
+    var cpu = cpu.toFixed(2);
+
+    cpuChart.streamTo(cpuCanvas, 500);
+}, 800)

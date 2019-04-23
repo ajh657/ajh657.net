@@ -1,5 +1,6 @@
 html,body{
     background: rgb(61, 61, 61);
+    height: 100%;
 }
 
 .col{
@@ -26,3 +27,13 @@ html,body{
 .cputext{
     text-align: center;
 }
+
+div.cpu-chart-tooltip {
+    background: #444;
+    padding: 1em;
+    margin-top: 20px;
+    font-family: consolas;
+    color: white;
+    font-size: 10px;
+    pointer-events: none;
+  }
