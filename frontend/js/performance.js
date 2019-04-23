@@ -1,4 +1,4 @@
-var radialOBJCPU = radialIndicator('#cpu', {
+/**var radialOBJCPU = radialIndicator('#cpu', {
     barColor : '#87CEEB',
     barWidth : 10,
     initValue : 1,
@@ -40,3 +40,4 @@ function httpGet(theUrl)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
+*/
