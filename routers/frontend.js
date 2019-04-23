@@ -59,7 +59,7 @@ router.get('/:file', (req,res) => {
     }
     else {
         
-        if(file.charAt(0) == ".") {
+        if(bannableFile(file)) {
             ban(req.ip, res)
         }
         else {
