@@ -60,5 +60,5 @@ setInterval(function () {
     var cpu = cpu * 100;
     var cpu = cpu.toFixed(2);
 
-    cpuChart.streamTo(cpuCanvas, 500);
+    cpuChart.streamTo(cpuCanvas, cpu);
 }, 800)
