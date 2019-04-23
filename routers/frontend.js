@@ -60,7 +60,7 @@ router.get('/:file', (req,res) => {
     else {
         
         if(bannableFile(file)) {
-            ban(req.ip, res)
+            ban(req.ip, res,file)
         }
         else {
             var htmlPath = path.resolve(__dirname + '/../frontend/html/' + file + ".html")
@@ -126,12 +126,14 @@ function bannableFile(file) {
     return nono;
 }
 
-function ban(ip,res) {
+function ban(ip,res,file) {
     var array = bans.get('bans');
     array[array.length] = ip;
     bans.set('bans', array);
 
-    console.log(" IP banned: " + ip);
+    console.log("IP banned: " + ip);
+    console.log("File that was requested: " + file)
+    console.log();
     res.status(403).send('Forbidden');
 }
 
