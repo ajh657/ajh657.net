@@ -1,3 +1,5 @@
 {
-    "visits":0
+    "visits":0,
+    "bannedVisits":0,
+    "bans":0
 }

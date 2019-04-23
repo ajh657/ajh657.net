@@ -27,7 +27,7 @@ router.get('/', (req,res) => {
         console.log(new Date().toLocaleString());
         console.log();
 
-        data.set('visits', data.get('visits') + 1)
+        data.set('visits', data.get('visits') + 1);
 
         res.sendFile(frontpagePath);
     }
@@ -134,6 +134,9 @@ function ban(ip,res,file) {
     console.log("IP banned: " + ip);
     console.log("File that was requested: " + file)
     console.log();
+
+    data.set('bans', data.get('bans') + 1);
+
     res.status(403).send('Forbidden');
 }
 
@@ -145,6 +148,8 @@ function ifAllowed(ip) {
         
         if(element == ip) banned = true;
     }
+
+    data.set('bannedVisits', data.get('bannedVisits') + 1);
 
     return banned;
 }
