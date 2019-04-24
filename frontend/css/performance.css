@@ -36,4 +36,8 @@ div.cpu-chart-tooltip {
     color: white;
     font-size: 10px;
     pointer-events: none;
-  }
+}
+
+.display{
+    width: 100%;
+}
