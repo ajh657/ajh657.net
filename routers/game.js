@@ -32,8 +32,8 @@ router.get('/:game/TemplateData/:file', (req,res) => {
 
 });
 
-router.get('/:game/TemplateData/:file', (req,res) => {
-    var gamePath = path.resolve(__dirname + '/../unity/' + req.params.game + '/TemplateData/' + req.params.file);
+router.get('/:game/Build/:file', (req,res) => {
+    var gamePath = path.resolve(__dirname + '/../unity/' + req.params.game + '/Build/' + req.params.file);
 
     console.log(gamePath);
     console.log();
