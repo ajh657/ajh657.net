@@ -6,6 +6,7 @@ const app = express();
 const port = 80;
 
 app.use(bodyParser.json());
+app.use(subdomain('game', require('./routers/game')));
 app.use(subdomain('git', require('./routers/git')));
 app.use(subdomain('api', require('./routers/api')));
 
