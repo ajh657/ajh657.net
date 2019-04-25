@@ -1,8 +1,7 @@
-function httpGet(theUrl)
-{
+function httpGet(theUrl) {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "post", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
+    xmlHttp.open("post", theUrl, false); // false for synchronous request
+    xmlHttp.send(null);
     return xmlHttp.responseText;
 }
 
@@ -10,21 +9,48 @@ function myYRangeFunction(range) {
     // TODO implement your calculation using range.min and range.max
     var min = 0;
     var max = 100;
-    return {min: min, max: max};
-  }
+    return {
+        min: min,
+        max: max
+    };
+}
 
-var cpuChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true,maxValue:100, minValue:0}),
+var cpuChart = new SmoothieChart({
+        grid: {
+            sharpLines: true
+        },
+        tooltip: true,
+        maxValue: 100,
+        minValue: 0
+    }),
     cpuCanvas = document.getElementById('cpu-chart'),
     cpuSeries = new TimeSeries();
 
-cpuChart.addTimeSeries(cpuSeries, {lineWidth:2,strokeStyle:'#0080ff',maxValue:100,minValue:0,});
+cpuChart.addTimeSeries(cpuSeries, {
+    lineWidth: 2,
+    strokeStyle: '#0080ff',
+    maxValue: 100,
+    minValue: 0,
+});
 cpuChart.streamTo(cpuCanvas, 1000);
 
-var ramChart = new SmoothieChart({grid:{sharpLines:true},tooltip:true,maxValue:100, minValue:0}),
+var ramChart = new SmoothieChart({
+        grid: {
+            sharpLines: true
+        },
+        tooltip: true,
+        maxValue: 100,
+        minValue: 0
+    }),
     ramCanvas = document.getElementById('ram-chart'),
     ramSeries = new TimeSeries();
 
-ramChart.addTimeSeries(ramSeries, {lineWidth:2,strokeStyle:'#00ff00',maxValue:100,minValue:0,});
+ramChart.addTimeSeries(ramSeries, {
+    lineWidth: 2,
+    strokeStyle: '#00ff00',
+    maxValue: 100,
+    minValue: 0,
+});
 ramChart.streamTo(ramCanvas, 1000);
 
 setInterval(function () {

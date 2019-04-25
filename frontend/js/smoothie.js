@@ -95,21 +95,21 @@
  *        Add title option, by @mesca
  */
 
-;(function(exports) {
+;
+(function (exports) {
 
   // Date.now polyfill
-  Date.now = Date.now || function() { return new Date().getTime(); };
+  Date.now = Date.now || function () {
+    return new Date().getTime();
+  };
 
   var Util = {
-    extend: function() {
+    extend: function () {
       arguments[0] = arguments[0] || {};
-      for (var i = 1; i < arguments.length; i++)
-      {
-        for (var key in arguments[i])
-        {
-          if (arguments[i].hasOwnProperty(key))
-          {
-            if (typeof(arguments[i][key]) === 'object') {
+      for (var i = 1; i < arguments.length; i++) {
+        for (var key in arguments[i]) {
+          if (arguments[i].hasOwnProperty(key)) {
+            if (typeof (arguments[i][key]) === 'object') {
               if (arguments[i][key] instanceof Array) {
                 arguments[0][key] = arguments[i][key];
               } else {
@@ -123,9 +123,9 @@
       }
       return arguments[0];
     },
-    binarySearch: function(data, value) {
+    binarySearch: function (data, value) {
       var low = 0,
-          high = data.length;
+        high = data.length;
       while (low < high) {
         var mid = (low + high) >> 1;
         if (value < data[mid][0])
@@ -167,7 +167,7 @@
   /**
    * Clears all data and state from this TimeSeries object.
    */
-  TimeSeries.prototype.clear = function() {
+  TimeSeries.prototype.clear = function () {
     this.data = [];
     this.maxValue = Number.NaN; // The maximum value ever seen in this TimeSeries.
     this.minValue = Number.NaN; // The minimum value ever seen in this TimeSeries.
@@ -178,7 +178,7 @@
    *
    * This causes the graph to scale itself in the y-axis.
    */
-  TimeSeries.prototype.resetBounds = function() {
+  TimeSeries.prototype.resetBounds = function () {
     if (this.data.length) {
       // Walk through all data points, finding the min/max value
       this.maxValue = this.data[0][1];
@@ -207,7 +207,7 @@
    * @param sumRepeatedTimeStampValues if <code>timestamp</code> has an exact match in the series, this flag controls
    * whether it is replaced, or the values summed (defaults to false.)
    */
-  TimeSeries.prototype.append = function(timestamp, value, sumRepeatedTimeStampValues) {
+  TimeSeries.prototype.append = function (timestamp, value, sumRepeatedTimeStampValues) {
     // Rewind until we hit an older timestamp
     var i = this.data.length - 1;
     while (i >= 0 && this.data[i][0] > timestamp) {
@@ -239,7 +239,7 @@
     this.minValue = isNaN(this.minValue) ? value : Math.min(this.minValue, value);
   };
 
-  TimeSeries.prototype.dropOldData = function(oldestValidTime, maxDataSetLength) {
+  TimeSeries.prototype.dropOldData = function (oldestValidTime, maxDataSetLength) {
     // We must always keep one expired data point as we need this to draw the
     // line that comes into the chart from the left, but any points prior to that can be removed.
     var removeCount = 0;
@@ -341,33 +341,33 @@
 
   /** Formats the HTML string content of the tooltip. */
   SmoothieChart.tooltipFormatter = function (timestamp, data) {
-      var timestampFormatter = this.options.timestampFormatter || SmoothieChart.timeFormatter,
-          lines = [timestampFormatter(new Date(timestamp))],
-          label;
+    var timestampFormatter = this.options.timestampFormatter || SmoothieChart.timeFormatter,
+      lines = [timestampFormatter(new Date(timestamp))],
+      label;
 
-      for (var i = 0; i < data.length; ++i) {
-        label = data[i].series.options.tooltipLabel || ''
-        if (label !== ''){
-            label = label + ' ';
-        }
-        lines.push('<span style="color:' + data[i].series.options.strokeStyle + '">' +
+    for (var i = 0; i < data.length; ++i) {
+      label = data[i].series.options.tooltipLabel || ''
+      if (label !== '') {
+        label = label + ' ';
+      }
+      lines.push('<span style="color:' + data[i].series.options.strokeStyle + '">' +
         label +
         this.options.yMaxFormatter(data[i].value, this.options.labels.precision) + '</span>');
-      }
+    }
 
-      return lines.join('<br>');
+    return lines.join('<br>');
   };
 
   SmoothieChart.defaultChartOptions = {
     millisPerPixel: 20,
     enableDpiScaling: true,
-    yMinFormatter: function(min, precision) {
+    yMinFormatter: function (min, precision) {
       return parseFloat(min).toFixed(precision);
     },
-    yMaxFormatter: function(max, precision) {
+    yMaxFormatter: function (max, precision) {
       return parseFloat(max).toFixed(precision);
     },
-    yIntermediateFormatter: function(intermediate, precision) {
+    yIntermediateFormatter: function (intermediate, precision) {
       return parseFloat(intermediate).toFixed(precision);
     },
     maxValueScale: 1,
@@ -415,29 +415,29 @@
   };
 
   // Based on http://inspirit.github.com/jsfeat/js/compatibility.js
-  SmoothieChart.AnimateCompatibility = (function() {
-    var requestAnimationFrame = function(callback, element) {
-          var requestAnimationFrame =
-            window.requestAnimationFrame        ||
-            window.webkitRequestAnimationFrame  ||
-            window.mozRequestAnimationFrame     ||
-            window.oRequestAnimationFrame       ||
-            window.msRequestAnimationFrame      ||
-            function(callback) {
-              return window.setTimeout(function() {
-                callback(Date.now());
-              }, 16);
-            };
-          return requestAnimationFrame.call(window, callback, element);
-        },
-        cancelAnimationFrame = function(id) {
-          var cancelAnimationFrame =
-            window.cancelAnimationFrame ||
-            function(id) {
-              clearTimeout(id);
-            };
-          return cancelAnimationFrame.call(window, id);
-        };
+  SmoothieChart.AnimateCompatibility = (function () {
+    var requestAnimationFrame = function (callback, element) {
+        var requestAnimationFrame =
+          window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.oRequestAnimationFrame ||
+          window.msRequestAnimationFrame ||
+          function (callback) {
+            return window.setTimeout(function () {
+              callback(Date.now());
+            }, 16);
+          };
+        return requestAnimationFrame.call(window, callback, element);
+      },
+      cancelAnimationFrame = function (id) {
+        var cancelAnimationFrame =
+          window.cancelAnimationFrame ||
+          function (id) {
+            clearTimeout(id);
+          };
+        return cancelAnimationFrame.call(window, id);
+      };
 
     return {
       requestAnimationFrame: requestAnimationFrame,
@@ -464,11 +464,14 @@
    * }
    * </pre>
    */
-  SmoothieChart.prototype.addTimeSeries = function(timeSeries, options) {
-    this.seriesSet.push({timeSeries: timeSeries, options: Util.extend({}, SmoothieChart.defaultSeriesPresentationOptions, options)});
+  SmoothieChart.prototype.addTimeSeries = function (timeSeries, options) {
+    this.seriesSet.push({
+      timeSeries: timeSeries,
+      options: Util.extend({}, SmoothieChart.defaultSeriesPresentationOptions, options)
+    });
     if (timeSeries.options.resetBounds && timeSeries.options.resetBoundsInterval > 0) {
       timeSeries.resetBoundsTimerId = setInterval(
-        function() {
+        function () {
           timeSeries.resetBounds();
         },
         timeSeries.options.resetBoundsInterval
@@ -479,7 +482,7 @@
   /**
    * Removes the specified <code>TimeSeries</code> from the chart.
    */
-  SmoothieChart.prototype.removeTimeSeries = function(timeSeries) {
+  SmoothieChart.prototype.removeTimeSeries = function (timeSeries) {
     // Find the correct timeseries to remove, and remove it
     var numSeries = this.seriesSet.length;
     for (var i = 0; i < numSeries; i++) {
@@ -501,7 +504,7 @@
    * As you may use a single <code>TimeSeries</code> in multiple charts with different formatting in each usage,
    * these settings are stored in the chart.
    */
-  SmoothieChart.prototype.getTimeSeriesOptions = function(timeSeries) {
+  SmoothieChart.prototype.getTimeSeriesOptions = function (timeSeries) {
     // Find the correct timeseries to remove, and remove it
     var numSeries = this.seriesSet.length;
     for (var i = 0; i < numSeries; i++) {
@@ -514,7 +517,7 @@
   /**
    * Brings the specified <code>TimeSeries</code> to the top of the chart. It will be rendered last.
    */
-  SmoothieChart.prototype.bringToFront = function(timeSeries) {
+  SmoothieChart.prototype.bringToFront = function (timeSeries) {
     // Find the correct timeseries to remove, and remove it
     var numSeries = this.seriesSet.length;
     for (var i = 0; i < numSeries; i++) {
@@ -533,7 +536,7 @@
    * @param delayMillis an amount of time to wait before a data point is shown. This can prevent the end of the series
    * from appearing on screen, with new values flashing into view, at the expense of some latency.
    */
-  SmoothieChart.prototype.streamTo = function(canvas, delayMillis) {
+  SmoothieChart.prototype.streamTo = function (canvas, delayMillis) {
     this.canvas = canvas;
     this.delay = delayMillis;
     this.start();
@@ -562,23 +565,27 @@
     var time = this.lastChartTimestamp;
 
     // x pixel to time
-    var t = this.options.scrollBackwards
-      ? time - this.mouseX * this.options.millisPerPixel
-      : time - (this.canvas.offsetWidth - this.mouseX) * this.options.millisPerPixel;
+    var t = this.options.scrollBackwards ?
+      time - this.mouseX * this.options.millisPerPixel :
+      time - (this.canvas.offsetWidth - this.mouseX) * this.options.millisPerPixel;
 
     var data = [];
 
-     // For each data set...
+    // For each data set...
     for (var d = 0; d < this.seriesSet.length; d++) {
       var timeSeries = this.seriesSet[d].timeSeries;
       if (timeSeries.disabled) {
-          continue;
+        continue;
       }
 
       // find datapoint closest to time 't'
       var closeIdx = Util.binarySearch(timeSeries.data, t);
       if (closeIdx > 0 && closeIdx < timeSeries.data.length) {
-        data.push({ series: this.seriesSet[d], index: closeIdx, value: timeSeries.data[closeIdx][1] });
+        data.push({
+          series: this.seriesSet[d],
+          index: closeIdx,
+          value: timeSeries.data[closeIdx][1]
+        });
       }
     }
 
@@ -615,7 +622,7 @@
    */
   SmoothieChart.prototype.resize = function () {
     var dpr = !this.options.enableDpiScaling || !window ? 1 : window.devicePixelRatio,
-        width, height;
+      width, height;
     if (this.options.responsive) {
       // Newer behaviour: Use the canvas's size in the layout, and set the internal
       // resolution according to that size and the device pixel ratio (eg: high DPI)
@@ -657,7 +664,7 @@
   /**
    * Starts the animation of this chart.
    */
-  SmoothieChart.prototype.start = function() {
+  SmoothieChart.prototype.start = function () {
     if (this.frame) {
       // We're already running, so just return
       return;
@@ -667,23 +674,22 @@
     this.canvas.addEventListener('mouseout', this.mouseout);
 
     // Renders a frame, and queues the next frame for later rendering
-    var animate = function() {
-      this.frame = SmoothieChart.AnimateCompatibility.requestAnimationFrame(function() {
-        if(this.options.nonRealtimeData){
-           var dateZero = new Date(0);
-           // find the data point with the latest timestamp
-           var maxTimeStamp = this.seriesSet.reduce(function(max, series){
-             var dataSet = series.timeSeries.data;
-             var indexToCheck = Math.round(this.options.displayDataFromPercentile * dataSet.length) - 1;
-             indexToCheck = indexToCheck >= 0 ? indexToCheck : 0;
-             indexToCheck = indexToCheck <= dataSet.length -1 ? indexToCheck : dataSet.length -1;
-             if(dataSet && dataSet.length > 0)
-             {
+    var animate = function () {
+      this.frame = SmoothieChart.AnimateCompatibility.requestAnimationFrame(function () {
+        if (this.options.nonRealtimeData) {
+          var dateZero = new Date(0);
+          // find the data point with the latest timestamp
+          var maxTimeStamp = this.seriesSet.reduce(function (max, series) {
+            var dataSet = series.timeSeries.data;
+            var indexToCheck = Math.round(this.options.displayDataFromPercentile * dataSet.length) - 1;
+            indexToCheck = indexToCheck >= 0 ? indexToCheck : 0;
+            indexToCheck = indexToCheck <= dataSet.length - 1 ? indexToCheck : dataSet.length - 1;
+            if (dataSet && dataSet.length > 0) {
               // timestamp corresponds to element 0 of the data point
               var lastDataTimeStamp = dataSet[indexToCheck][0];
               max = max > lastDataTimeStamp ? max : lastDataTimeStamp;
-             }
-             return max;
+            }
+            return max;
           }.bind(this), dateZero);
           // use the max timestamp as current time
           this.render(this.canvas, maxTimeStamp > dateZero ? maxTimeStamp : null);
@@ -700,7 +706,7 @@
   /**
    * Stops the animation of this chart.
    */
-  SmoothieChart.prototype.stop = function() {
+  SmoothieChart.prototype.stop = function () {
     if (this.frame) {
       SmoothieChart.AnimateCompatibility.cancelAnimationFrame(this.frame);
       delete this.frame;
@@ -709,17 +715,17 @@
     }
   };
 
-  SmoothieChart.prototype.updateValueRange = function() {
+  SmoothieChart.prototype.updateValueRange = function () {
     // Calculate the current scale of the chart, from all time series.
     var chartOptions = this.options,
-        chartMaxValue = Number.NaN,
-        chartMinValue = Number.NaN;
+      chartMaxValue = Number.NaN,
+      chartMinValue = Number.NaN;
 
     for (var d = 0; d < this.seriesSet.length; d++) {
       // TODO(ndunn): We could calculate / track these values as they stream in.
       var timeSeries = this.seriesSet[d].timeSeries;
       if (timeSeries.disabled) {
-          continue;
+        continue;
       }
 
       if (!isNaN(timeSeries.maxValue)) {
@@ -747,7 +753,10 @@
 
     // If a custom range function is set, call it
     if (this.options.yRangeFunction) {
-      var range = this.options.yRangeFunction({min: chartMinValue, max: chartMaxValue});
+      var range = this.options.yRangeFunction({
+        min: chartMinValue,
+        max: chartMaxValue
+      });
       chartMinValue = range.min;
       chartMaxValue = range.max;
     }
@@ -761,14 +770,17 @@
       this.currentVisMinValue += chartOptions.scaleSmoothing * minValueDiff;
     }
 
-    this.valueRange = { min: chartMinValue, max: chartMaxValue };
+    this.valueRange = {
+      min: chartMinValue,
+      max: chartMaxValue
+    };
   };
 
-  SmoothieChart.prototype.render = function(canvas, time) {
+  SmoothieChart.prototype.render = function (canvas, time) {
     var nowMillis = Date.now();
 
     // Respect any frame rate limit.
-    if (this.options.limitFPS > 0 && nowMillis - this.lastRenderTimeMillis < (1000/this.options.limitFPS))
+    if (this.options.limitFPS > 0 && nowMillis - this.lastRenderTimeMillis < (1000 / this.options.limitFPS))
       return;
 
     if (!this.isAnimatingScale) {
@@ -777,7 +789,7 @@
 
       // Render at least every 1/6th of a second. The canvas may be resized, which there is
       // no reliable way to detect.
-      var maxIdleMillis = Math.min(1000/6, this.options.millisPerPixel);
+      var maxIdleMillis = Math.min(1000 / 6, this.options.millisPerPixel);
 
       if (nowMillis - this.lastRenderTimeMillis < maxIdleMillis) {
         return;
@@ -798,22 +810,27 @@
     this.lastChartTimestamp = time;
 
     var context = canvas.getContext('2d'),
-        chartOptions = this.options,
-        dimensions = { top: 0, left: 0, width: canvas.clientWidth, height: canvas.clientHeight },
-        // Calculate the threshold time for the oldest data points.
-        oldestValidTime = time - (dimensions.width * chartOptions.millisPerPixel),
-        valueToYPixel = function(value) {
-          var offset = value - this.currentVisMinValue;
-          return this.currentValueRange === 0
-            ? dimensions.height
-            : dimensions.height - (Math.round((offset / this.currentValueRange) * dimensions.height));
-        }.bind(this),
-        timeToXPixel = function(t) {
-          if(chartOptions.scrollBackwards) {
-            return Math.round((time - t) / chartOptions.millisPerPixel);
-          }
-          return Math.round(dimensions.width - ((time - t) / chartOptions.millisPerPixel));
-        };
+      chartOptions = this.options,
+      dimensions = {
+        top: 0,
+        left: 0,
+        width: canvas.clientWidth,
+        height: canvas.clientHeight
+      },
+      // Calculate the threshold time for the oldest data points.
+      oldestValidTime = time - (dimensions.width * chartOptions.millisPerPixel),
+      valueToYPixel = function (value) {
+        var offset = value - this.currentVisMinValue;
+        return this.currentValueRange === 0 ?
+          dimensions.height :
+          dimensions.height - (Math.round((offset / this.currentValueRange) * dimensions.height));
+      }.bind(this),
+      timeToXPixel = function (t) {
+        if (chartOptions.scrollBackwards) {
+          return Math.round((time - t) / chartOptions.millisPerPixel);
+        }
+        return Math.round(dimensions.width - ((time - t) / chartOptions.millisPerPixel));
+      };
 
     this.updateValueRange();
 
@@ -847,9 +864,7 @@
     // Vertical (time) dividers.
     if (chartOptions.grid.millisPerLine > 0) {
       context.beginPath();
-      for (var t = time - (time % chartOptions.grid.millisPerLine);
-           t >= oldestValidTime;
-           t -= chartOptions.grid.millisPerLine) {
+      for (var t = time - (time % chartOptions.grid.millisPerLine); t >= oldestValidTime; t -= chartOptions.grid.millisPerLine) {
         var gx = timeToXPixel(t);
         if (chartOptions.grid.sharpLines) {
           gx -= 0.5;
@@ -885,7 +900,7 @@
     if (chartOptions.horizontalLines && chartOptions.horizontalLines.length) {
       for (var hl = 0; hl < chartOptions.horizontalLines.length; hl++) {
         var line = chartOptions.horizontalLines[hl],
-            hly = Math.round(valueToYPixel(line.value)) - 0.5;
+          hly = Math.round(valueToYPixel(line.value)) - 0.5;
         context.strokeStyle = line.color || '#ffffff';
         context.lineWidth = line.lineWidth || 1;
         context.beginPath();
@@ -901,11 +916,11 @@
       context.save();
       var timeSeries = this.seriesSet[d].timeSeries;
       if (timeSeries.disabled) {
-          continue;
+        continue;
       }
 
       var dataSet = timeSeries.data,
-          seriesOptions = this.seriesSet[d].options;
+        seriesOptions = this.seriesSet[d].options;
 
       // Delete old data that's moved off the left of the chart.
       timeSeries.dropOldData(oldestValidTime, chartOptions.maxDataSetLength);
@@ -916,10 +931,13 @@
       // Draw the line...
       context.beginPath();
       // Retain lastX, lastY for calculating the control points of bezier curves.
-      var firstX = 0, firstY = 0, lastX = 0, lastY = 0;
+      var firstX = 0,
+        firstY = 0,
+        lastX = 0,
+        lastY = 0;
       for (var i = 0; i < dataSet.length && dataSet.length !== 1; i++) {
         var x = timeToXPixel(dataSet[i][0]),
-            y = valueToYPixel(dataSet[i][1]);
+          y = valueToYPixel(dataSet[i][1]);
 
         if (i === 0) {
           firstX = x;
@@ -928,41 +946,45 @@
         } else {
           switch (chartOptions.interpolation) {
             case "linear":
-            case "line": {
-              context.lineTo(x,y);
-              break;
-            }
+            case "line":
+              {
+                context.lineTo(x, y);
+                break;
+              }
             case "bezier":
-            default: {
-              // Great explanation of Bezier curves: http://en.wikipedia.org/wiki/Bezier_curve#Quadratic_curves
-              //
-              // Assuming A was the last point in the line plotted and B is the new point,
-              // we draw a curve with control points P and Q as below.
-              //
-              // A---P
-              //     |
-              //     |
-              //     |
-              //     Q---B
-              //
-              // Importantly, A and P are at the same y coordinate, as are B and Q. This is
-              // so adjacent curves appear to flow as one.
-              //
-              context.bezierCurveTo( // startPoint (A) is implicit from last iteration of loop
-                Math.round((lastX + x) / 2), lastY, // controlPoint1 (P)
-                Math.round((lastX + x)) / 2, y, // controlPoint2 (Q)
-                x, y); // endPoint (B)
-              break;
-            }
-            case "step": {
-              context.lineTo(x,lastY);
-              context.lineTo(x,y);
-              break;
-            }
+            default:
+              {
+                // Great explanation of Bezier curves: http://en.wikipedia.org/wiki/Bezier_curve#Quadratic_curves
+                //
+                // Assuming A was the last point in the line plotted and B is the new point,
+                // we draw a curve with control points P and Q as below.
+                //
+                // A---P
+                //     |
+                //     |
+                //     |
+                //     Q---B
+                //
+                // Importantly, A and P are at the same y coordinate, as are B and Q. This is
+                // so adjacent curves appear to flow as one.
+                //
+                context.bezierCurveTo( // startPoint (A) is implicit from last iteration of loop
+                  Math.round((lastX + x) / 2), lastY, // controlPoint1 (P)
+                  Math.round((lastX + x)) / 2, y, // controlPoint2 (Q)
+                  x, y); // endPoint (B)
+                break;
+              }
+            case "step":
+              {
+                context.lineTo(x, lastY);
+                context.lineTo(x, y);
+                break;
+              }
           }
         }
 
-        lastX = x; lastY = y;
+        lastX = x;
+        lastY = y;
       }
 
       if (dataSet.length > 1) {
@@ -1004,18 +1026,18 @@
     // Draw the axis values on the chart.
     if (!chartOptions.labels.disabled && !isNaN(this.valueRange.min) && !isNaN(this.valueRange.max)) {
       var maxValueString = chartOptions.yMaxFormatter(this.valueRange.max, chartOptions.labels.precision),
-          minValueString = chartOptions.yMinFormatter(this.valueRange.min, chartOptions.labels.precision),
-          maxLabelPos = chartOptions.scrollBackwards ? 0 : dimensions.width - context.measureText(maxValueString).width - 2,
-          minLabelPos = chartOptions.scrollBackwards ? 0 : dimensions.width - context.measureText(minValueString).width - 2;
+        minValueString = chartOptions.yMinFormatter(this.valueRange.min, chartOptions.labels.precision),
+        maxLabelPos = chartOptions.scrollBackwards ? 0 : dimensions.width - context.measureText(maxValueString).width - 2,
+        minLabelPos = chartOptions.scrollBackwards ? 0 : dimensions.width - context.measureText(minValueString).width - 2;
       context.fillStyle = chartOptions.labels.fillStyle;
       context.fillText(maxValueString, maxLabelPos, chartOptions.labels.fontSize);
       context.fillText(minValueString, minLabelPos, dimensions.height - 2);
     }
 
     // Display intermediate y axis labels along y-axis to the left of the chart
-    if ( chartOptions.labels.showIntermediateLabels
-          && !isNaN(this.valueRange.min) && !isNaN(this.valueRange.max)
-          && chartOptions.grid.verticalSections > 0) {
+    if (chartOptions.labels.showIntermediateLabels &&
+      !isNaN(this.valueRange.min) && !isNaN(this.valueRange.max) &&
+      chartOptions.grid.verticalSections > 0) {
       // show a label above every vertical section divider
       var step = (this.valueRange.max - this.valueRange.min) / chartOptions.grid.verticalSections;
       var stepPixels = dimensions.height / chartOptions.grid.verticalSections;
@@ -1027,9 +1049,9 @@
         var yValue = chartOptions.yIntermediateFormatter(this.valueRange.min + (v * step), chartOptions.labels.precision);
         //left of right axis?
         intermediateLabelPos =
-          chartOptions.labels.intermediateLabelSameAxis
-          ? (chartOptions.scrollBackwards ? 0 : dimensions.width - context.measureText(yValue).width - 2)
-          : (chartOptions.scrollBackwards ? dimensions.width - context.measureText(yValue).width - 2 : 0);
+          chartOptions.labels.intermediateLabelSameAxis ?
+          (chartOptions.scrollBackwards ? 0 : dimensions.width - context.measureText(yValue).width - 2) :
+          (chartOptions.scrollBackwards ? dimensions.width - context.measureText(yValue).width - 2 : 0);
 
         context.fillText(yValue, intermediateLabelPos, gy - chartOptions.grid.lineWidth);
       }
@@ -1037,27 +1059,25 @@
 
     // Display timestamps along x-axis at the bottom of the chart.
     if (chartOptions.timestampFormatter && chartOptions.grid.millisPerLine > 0) {
-      var textUntilX = chartOptions.scrollBackwards
-        ? context.measureText(minValueString).width
-        : dimensions.width - context.measureText(minValueString).width + 4;
-      for (var t = time - (time % chartOptions.grid.millisPerLine);
-           t >= oldestValidTime;
-           t -= chartOptions.grid.millisPerLine) {
+      var textUntilX = chartOptions.scrollBackwards ?
+        context.measureText(minValueString).width :
+        dimensions.width - context.measureText(minValueString).width + 4;
+      for (var t = time - (time % chartOptions.grid.millisPerLine); t >= oldestValidTime; t -= chartOptions.grid.millisPerLine) {
         var gx = timeToXPixel(t);
         // Only draw the timestamp if it won't overlap with the previously drawn one.
-        if ((!chartOptions.scrollBackwards && gx < textUntilX) || (chartOptions.scrollBackwards && gx > textUntilX))  {
+        if ((!chartOptions.scrollBackwards && gx < textUntilX) || (chartOptions.scrollBackwards && gx > textUntilX)) {
           // Formats the timestamp based on user specified formatting function
           // SmoothieChart.timeFormatter function above is one such formatting option
           var tx = new Date(t),
             ts = chartOptions.timestampFormatter(tx),
             tsWidth = context.measureText(ts).width;
 
-          textUntilX = chartOptions.scrollBackwards
-            ? gx + tsWidth + 2
-            : gx - tsWidth - 2;
+          textUntilX = chartOptions.scrollBackwards ?
+            gx + tsWidth + 2 :
+            gx - tsWidth - 2;
 
           context.fillStyle = chartOptions.labels.fillStyle;
-          if(chartOptions.scrollBackwards) {
+          if (chartOptions.scrollBackwards) {
             context.fillText(ts, gx, dimensions.height - 2);
           } else {
             context.fillText(ts, gx - tsWidth, dimensions.height - 2);
@@ -1088,8 +1108,10 @@
   };
 
   // Sample timestamp formatting function
-  SmoothieChart.timeFormatter = function(date) {
-    function pad2(number) { return (number < 10 ? '0' : '') + number }
+  SmoothieChart.timeFormatter = function (date) {
+    function pad2(number) {
+      return (number < 10 ? '0' : '') + number
+    }
     return pad2(date.getHours()) + ':' + pad2(date.getMinutes()) + ':' + pad2(date.getSeconds());
   };
 
@@ -1097,4 +1119,3 @@
   exports.SmoothieChart = SmoothieChart;
 
 })(typeof exports === 'undefined' ? this : exports);
-

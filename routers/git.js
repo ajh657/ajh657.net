@@ -1,15 +1,17 @@
 const express = require('express');
 const git = require('simple-git');
 const Store = require('data-store');
-const data = new Store({ path: __dirname + '/../data/git.json'});
+const data = new Store({
+    path: __dirname + '/../data/git.json'
+});
 
 var router = express.Router();
 
 router.get('/', (req, res) => {
-  res.send('Access Denied')
+    res.send('Access Denied')
 })
 
-router.post('/', (req,res) => {
+router.post('/', (req, res) => {
     data.set(req.body.repository.name, JSON.stringify(req.body));
     gitHandler(req.body);
     console.log(req.body.repository.name);
@@ -24,7 +26,7 @@ function gitHandler(body) {
         gitInit();
     }
     if (body.commits[0] != null) {
-        if(body.repository.name == "ajh657.net") {
+        if (body.repository.name == "ajh657.net") {
             console.log('Server Pulled')
             gitPullServer();
         }

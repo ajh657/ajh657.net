@@ -4,13 +4,17 @@ const Store = require('data-store');
 const fs = require('fs');
 const fileList = require('../data/fileList.json');
 
-const data = new Store({ path: __dirname + '/../data/visits.json'});
-const bans = new Store({ path: __dirname + '/../data/bans.json'});
+const data = new Store({
+    path: __dirname + '/../data/visits.json'
+});
+const bans = new Store({
+    path: __dirname + '/../data/bans.json'
+});
 const path = require('path');
 
-router.get('/', (req,res) => {
+router.get('/', (req, res) => {
 
-    if(ifAllowed(req.ip)) {
+    if (ifAllowed(req.ip)) {
 
         console.log('Banned ip reguested frontpage');
         console.log('Requester ip: ' + req.ip);
@@ -18,8 +22,7 @@ router.get('/', (req,res) => {
         console.log();
 
         res.status(403).send('Forbidden');
-    }
-    else {
+    } else {
         var frontpagePath = path.resolve(__dirname + '/../frontend/html/index.html')
 
         console.log('Fontpage requested');
@@ -33,7 +36,7 @@ router.get('/', (req,res) => {
     }
 })
 
-router.get('/robots.txt', (req,res) => {
+router.get('/robots.txt', (req, res) => {
     var robotsPath = path.resolve(__dirname + '/../frontend/robots.txt')
 
     console.log('Robots.txt requested');
@@ -44,11 +47,11 @@ router.get('/robots.txt', (req,res) => {
     res.sendFile(robotsPath);
 })
 
-router.get('/:file', (req,res) => {
+router.get('/:file', (req, res) => {
 
     var file = req.params.file;
 
-    if(ifAllowed(req.ip)) {
+    if (ifAllowed(req.ip)) {
 
         console.log('Banned ip reguested file: ' + file);
         console.log('Requester ip: ' + req.ip);
@@ -56,26 +59,23 @@ router.get('/:file', (req,res) => {
         console.log();
 
         res.status(403).send('Forbidden');
-    }
-    else {
-        
-        if(bannableFile(file)) {
-            ban(req.ip, res,file)
-        }
-        else {
+    } else {
+
+        if (bannableFile(file)) {
+            ban(req.ip, res, file)
+        } else {
             var htmlPath = path.resolve(__dirname + '/../frontend/html/' + file + ".html")
 
-            console.log('Page: ' + req.params.file +' Requested');
+            console.log('Page: ' + req.params.file + ' Requested');
             console.log('Requester ip: ' + req.ip);
             console.log(new Date().toLocaleString());
             console.log();
 
-    
 
-            if(!fs.existsSync(htmlPath)) {
+
+            if (!fs.existsSync(htmlPath)) {
                 res.status(404).send('File not found')
-            } 
-            else {
+            } else {
                 data.set('visits', data.get('visits') + 1);
                 res.sendFile(htmlPath);
             }
@@ -83,34 +83,32 @@ router.get('/:file', (req,res) => {
     }
 })
 
-router.get('/js/:file', (req,res) => {
+router.get('/js/:file', (req, res) => {
     var jsPath = path.resolve(__dirname + '/../frontend/js/' + req.params.file)
 
-    console.log('File: ' + req.params.file +' Requested');
+    console.log('File: ' + req.params.file + ' Requested');
     console.log('Requester ip: ' + req.ip);
     console.log(new Date().toLocaleString());
     console.log();
 
-    if(!fs.existsSync(jsPath)) {
+    if (!fs.existsSync(jsPath)) {
         res.status(404).send('File not found');
-    }
-    else {
+    } else {
         res.sendFile(jsPath);
     }
 })
 
-router.get('/css/:file', (req,res) => {
+router.get('/css/:file', (req, res) => {
     var cssPath = path.resolve(__dirname + '/../frontend/css/' + req.params.file)
 
-    console.log('File: ' + req.params.file +' Requested');
+    console.log('File: ' + req.params.file + ' Requested');
     console.log('Requester ip: ' + req.ip);
     console.log(new Date().toLocaleString());
     console.log();
 
-    if(!fs.existsSync(cssPath)) {
+    if (!fs.existsSync(cssPath)) {
         res.status(404).send('File not found');
-    }
-    else {
+    } else {
         res.sendFile(cssPath);
     }
 })
@@ -121,12 +119,12 @@ function bannableFile(file) {
     var nono = false;
     for (let i = 0; i < fileList.list.length; i++) {
         var element = fileList.list[i];
-        if(element == file) nono = true;
+        if (element == file) nono = true;
     }
     return nono;
 }
 
-function ban(ip,res,file) {
+function ban(ip, res, file) {
     var array = bans.get('bans');
     array[array.length] = ip;
     bans.set('bans', array);
@@ -145,8 +143,8 @@ function ifAllowed(ip) {
     var bannedList = bans.get('bans');
     for (let index = 0; index < bannedList.length; index++) {
         var element = bannedList[index];
-        
-        if(element == ip) banned = true;
+
+        if (element == ip) banned = true;
     }
 
     data.set('bannedVisits', data.get('bannedVisits') + 1);

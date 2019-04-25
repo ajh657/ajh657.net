@@ -3,7 +3,8 @@
         ".git",
         "node_modules/**/node_modules",
         "data/*",
-        "frontend/*"
+        "frontend/*",
+        "unity/*"
     ],
-    "delay":"40"
+    "delay": "40"
 }

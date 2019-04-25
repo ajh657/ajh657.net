@@ -1,10 +1,11 @@
-html,body{
+html,
+body {
     background: rgb(61, 61, 61);
     height: 100%;
 }
 
-.col{
-    
+.col {
+
     position: absolute;
     margin: auto;
     top: 0;
@@ -16,15 +17,17 @@ html,body{
     background-color: #ccc;
     border-radius: 3px;
 }
-.cpu,canvas{
+
+.cpu,
+canvas {
     margin-top: 2%;
 }
 
-.ram{
+.ram {
     margin-top: 2%;
 }
 
-.cputext{
+.cputext {
     text-align: center;
 }
 
@@ -38,6 +41,6 @@ div.cpu-chart-tooltip {
     pointer-events: none;
 }
 
-.display{
+.display {
     width: 100%;
 }
