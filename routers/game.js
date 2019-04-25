@@ -7,6 +7,7 @@ router.get('/:game', (req,res) => {
     var gamePath = path.resolve('/unity/' + req.params.game + '/index.html');
 
     console.log(gamePath);
+    console.log(fs.existsSync(gamePath));
     console.log();
 
     if(fs.existsSync(gamePath)){
