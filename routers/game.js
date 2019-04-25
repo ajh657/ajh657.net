@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 router.get('/:game', (req,res) => {
-    var gamePath = path.resolve(__dirname + '../unity/' + req.params.game + '/index.html');
+    var gamePath = path.resolve(__dirname + '/../unity/' + req.params.game + '/index.html');
 
     console.log(gamePath);
     console.log(fs.existsSync(gamePath));
@@ -19,7 +19,7 @@ router.get('/:game', (req,res) => {
 });
 
 router.get('/:game/TemplateData/:file', (req,res) => {
-    var gamePath = path.resolve(__dirname + '../unity/' + req.params.game + '/TemplateData/' + req.params.file);
+    var gamePath = path.resolve(__dirname + '/../unity/' + req.params.game + '/TemplateData/' + req.params.file);
 
     console.log(gamePath);
     console.log();
@@ -33,7 +33,7 @@ router.get('/:game/TemplateData/:file', (req,res) => {
 });
 
 router.get('/:game/TemplateData/:file', (req,res) => {
-    var gamePath = path.resolve(__dirname + '../unity/' + req.params.game + '/TemplateData/' + req.params.file);
+    var gamePath = path.resolve(__dirname + '/../unity/' + req.params.game + '/TemplateData/' + req.params.file);
 
     console.log(gamePath);
     console.log();
