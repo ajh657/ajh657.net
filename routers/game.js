@@ -25,6 +25,10 @@ router.get('/:game/TemplateData/:file', (req,res) => {
     console.log();
 
     if(fs.existsSync(gamePath)){
+        if (path.extname(req.params.file)) {
+            res.setHeader('Content-Type', 'application/json');
+            res.setHeader("Access-Control-Allow-Origin", "*");
+        }
         res.sendFile(gamePath);
     }else{
         res.status(404).send('Not Found');
@@ -39,6 +43,10 @@ router.get('/:game/Build/:file', (req,res) => {
     console.log();
 
     if(fs.existsSync(gamePath)){
+        if (path.extname(req.params.file)) {
+            res.setHeader('Content-Type', 'application/json');
+            res.setHeader("Access-Control-Allow-Origin", "*");
+        }
         res.sendFile(gamePath);
     }else{
         res.status(404).send('Not Found');
