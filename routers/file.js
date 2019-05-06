@@ -47,16 +47,17 @@ router.get('/getFiles', (req,res) => {
 
 function encrypt(file,password,req,res) {
     console.log('here 1')
-    nodecipher.encryptSync({
-        input: file,
-        output: file + '.cast5',
-        password:password
-    }, (err,opts) => {
-        console.log(err);
-        if(err) return failEncrypt(file,req,res,err);
-        console.log('here 2')
-        return cleanUpEncrypt(file,req,res)
-    })
+    try {
+        nodecipher.encryptSync({
+            input: file,
+            output: file + '.cast5',
+            password:password
+        });
+    } catch (e) {
+        failEncrypt
+    }
+    console.log('here 2')
+    return cleanUpEncrypt(file,req,res)
 }
 
 function decrypt(file,password,req,res) {
@@ -71,24 +72,24 @@ function decrypt(file,password,req,res) {
     })
 }
 
-function failEncrypt(file,req,res,err) {
+function failEncrypt(file,err) {
     if(fs.existsSync(file + '.cast5')) fs.unlinkSync(file + '.cast5');
     if(fs.existsSync(file)) fs.unlinkSync(file);
     console.log(err)
     return false;
 }
 
-function failDecrypt(file,req,res) {
+function failDecrypt(file) {
     res.status(500).send('error');
 }
 
-function cleanUpEncrypt(file,req,res) {
+function cleanUpEncrypt(file) {
     console.log('here 3')
     fs.unlinkSync(file);
     return true;
 }
 
-function cleanUpDecrypt(file,req,res) {
+function cleanUpDecrypt(file) {
     fs.unlinkSync(file + '.cast5');
     res.status(200).download(file);
 }
