@@ -4,7 +4,10 @@ const fs = require('fs');
 const path = require('path');
 
 router.post('/upload', (req,res) => {
-    if (Object.keys(req.files).length === 0) {
+    if (req.files == null) {
+        return res.status(400).send('File not uploaded');
+    }
+    if (Object.keys(req.files).length == 0) {
         return res.status(400).send('File not uploaded');
     }
 
