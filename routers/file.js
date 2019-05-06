@@ -21,7 +21,11 @@ router.post('/upload', (req,res) => {
         if(err) return res.status(500).send(err)
 
 
-        encrypt(uploadPath,req.body.password,req,res);
+        if (encrypt(uploadPath,req.body.password,req,res)) {
+            res.send('File: ' + uploadedFile.name + ' uploaded');
+        } else {
+            res.send('error')
+        }
         //res.send('File: ' + uploadedFile.name + ' uploaded')
     })
 })
@@ -44,7 +48,7 @@ function encrypt(file,password,req,res) {
         output: file + '.cast5',
         password:password
     }, (err,opts) => {
-        if(err) failEncrypt(file,req,res);
+        if(err) return failEncrypt(file,req,res);
 
         return cleanUpEncrypt(file,req,res)
     })
@@ -66,7 +70,7 @@ function failEncrypt(file,req,res) {
     if(fs.existsSync(file + '.cast5')) fs.unlinkSync(file + '.cast5');
     if(fs.existsSync(file)) fs.unlinkSync(file);
 
-    res.status(500).send('error');
+    return false;
 }
 
 function failDecrypt(file,req,res) {
@@ -75,7 +79,7 @@ function failDecrypt(file,req,res) {
 
 function cleanUpEncrypt(file,req,res) {
     fs.unlinkSync(file);
-    return res.redirect('http://ajh657.net/upload');
+    return true;
 }
 
 function cleanUpDecrypt(file,req,res) {
