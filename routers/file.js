@@ -48,6 +48,7 @@ function encrypt(file,password,req,res) {
         output: file + '.cast5',
         password:password
     }, (err,opts) => {
+        console.log(err);
         if(err) return failEncrypt(file,req,res,err);
 
         return cleanUpEncrypt(file,req,res)
