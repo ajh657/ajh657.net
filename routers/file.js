@@ -54,10 +54,11 @@ function encrypt(file,password,req,res) {
             password:password
         });
     } catch (e) {
-        failEncrypt
+        console.log(e)
+        return false;
     }
     console.log('here 2')
-    return cleanUpEncrypt(file,req,res)
+    return true;
 }
 
 function decrypt(file,password,req,res) {
@@ -81,17 +82,6 @@ function failEncrypt(file,err) {
 
 function failDecrypt(file) {
     res.status(500).send('error');
-}
-
-function cleanUpEncrypt(file) {
-    console.log('here 3')
-    fs.unlinkSync(file);
-    return true;
-}
-
-function cleanUpDecrypt(file) {
-    fs.unlinkSync(file + '.cast5');
-    res.status(200).download(file);
 }
 
 module.exports = router;
