@@ -10,7 +10,7 @@ router.post('/upload', (req,res) => {
     console.log(Object.keys(req.files).length == 0)
     let uploadedFile = req.files.file
 
-    uploadedFile.mv(__dirname + '../files/' + uploadedFile.name, (err) => {
+    uploadedFile.mv(__dirname + '/../files/' + uploadedFile.name, (err) => {
         if(err) return res.status(500).send(err)
 
         res.send('File: ' + uploadedFile.name + ' uploaded')
