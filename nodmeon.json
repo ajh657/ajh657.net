@@ -4,7 +4,8 @@
         "node_modules/**/node_modules",
         "data/*",
         "frontend/*",
-        "unity/*"
+        "unity/*",
+        "files/*"
     ],
     "delay": "40"
 }

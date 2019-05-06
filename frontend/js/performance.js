@@ -5,16 +5,6 @@ function httpGet(theUrl) {
     return xmlHttp.responseText;
 }
 
-function myYRangeFunction(range) {
-    // TODO implement your calculation using range.min and range.max
-    var min = 0;
-    var max = 100;
-    return {
-        min: min,
-        max: max
-    };
-}
-
 var cpuChart = new SmoothieChart({
         grid: {
             sharpLines: true
