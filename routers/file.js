@@ -48,7 +48,7 @@ function encrypt(file,password,req,res) {
         output: file + '.cast5',
         password:password
     }, (err,opts) => {
-        if(err) return failEncrypt(file,req,res);
+        if(err) return failEncrypt(file,req,res,err);
 
         return cleanUpEncrypt(file,req,res)
     })
@@ -66,10 +66,10 @@ function decrypt(file,password,req,res) {
     })
 }
 
-function failEncrypt(file,req,res) {
+function failEncrypt(file,req,res,err) {
     if(fs.existsSync(file + '.cast5')) fs.unlinkSync(file + '.cast5');
     if(fs.existsSync(file)) fs.unlinkSync(file);
-
+    console.log(err)
     return false;
 }
 
