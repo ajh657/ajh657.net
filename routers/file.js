@@ -46,7 +46,7 @@ function encrypt(file,password,req,res) {
     }, (err,opts) => {
         if(err) failEncrypt(file,req,res);
 
-        cleanUpEncrypt(file,req,res)
+        return cleanUpEncrypt(file,req,res)
     })
 }
 
@@ -75,7 +75,7 @@ function failDecrypt(file,req,res) {
 
 function cleanUpEncrypt(file,req,res) {
     fs.unlinkSync(file);
-    res.redirect('http://ajh657.net/upload');
+    return res.redirect('http://ajh657.net/upload');
 }
 
 function cleanUpDecrypt(file,req,res) {
