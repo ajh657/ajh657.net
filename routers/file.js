@@ -20,6 +20,9 @@ router.post('/upload', (req,res) => {
     uploadedFile.mv(uploadPath, (err) => {
         if(err) return res.status(500).send(err)
 
+        var test = encrypt(uploadPath,req.body.password,req,res);
+
+        console.log(test);
 
         if (encrypt(uploadPath,req.body.password,req,res)) {
             res.send('File: ' + uploadedFile.name + ' uploaded');
