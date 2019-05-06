@@ -57,6 +57,7 @@ function encrypt(file,password,req,res) {
         console.log(e)
         return false;
     }
+    fs.unlinkSync(file);
     console.log('here 2')
     return true;
 }
