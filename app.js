@@ -6,7 +6,9 @@ const fileUpload = require('express-fileupload');
 const app = express();
 const port = 80;
 
-app.use(fileUpload());
+app.use(fileUpload({
+    limit: 50 * 1024 * 1024
+}));
 app.use(bodyParser.json());
 app.use(subdomain('file', require('./routers/file')));
 app.use(subdomain('game', require('./routers/game')));
