@@ -28,7 +28,7 @@ router.post('/upload', (req,res) => {
 
 router.post('/download', (req,res) => {
     var filePath = path.resolve(__dirname + '/../files/' + req.body.fileName);
-
+    
     decrypt(filePath,req.body.password,req,res);
 })
 
@@ -75,7 +75,7 @@ function failDecrypt(file,req,res) {
 
 function cleanUpEncrypt(file,req,res) {
     fs.unlinkSync(file);
-    res.status(200);
+    res.redirect('http://ajh657.net/upload');
 }
 
 function cleanUpDecrypt(file,req,res) {
