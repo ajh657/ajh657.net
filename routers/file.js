@@ -46,6 +46,7 @@ router.get('/getFiles', (req,res) => {
 })
 
 function encrypt(file,password,req,res) {
+    console.log('here 1')
     nodecipher.encryptSync({
         input: file,
         output: file + '.cast5',
@@ -53,7 +54,7 @@ function encrypt(file,password,req,res) {
     }, (err,opts) => {
         console.log(err);
         if(err) return failEncrypt(file,req,res,err);
-
+        console.log('here 2')
         return cleanUpEncrypt(file,req,res)
     })
 }
@@ -82,6 +83,7 @@ function failDecrypt(file,req,res) {
 }
 
 function cleanUpEncrypt(file,req,res) {
+    console.log('here 3')
     fs.unlinkSync(file);
     return true;
 }
