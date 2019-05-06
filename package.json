@@ -23,6 +23,7 @@
     "express": "^4.16.4",
     "express-fileupload": "^1.1.4",
     "express-subdomain": "^1.0.5",
+    "node-cipher": "^6.3.3",
     "path": "^0.12.7",
     "simple-git": "^1.110.0"
   }
