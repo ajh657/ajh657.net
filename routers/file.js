@@ -53,11 +53,11 @@ function encrypt(file,password,req,res) {
             output: file + '.cast5',
             password:password
         });
+        fs.unlinkSync(file);
     } catch (e) {
         console.log(e)
         return false;
     }
-    fs.unlinkSync(file);
     console.log('here 2')
     return true;
 }
