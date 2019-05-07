@@ -2,6 +2,8 @@ function getFiles() {
     var dropdown = document.getElementById('file');
     var data = httpRequest('http://file.ajh657.net/getFiles');
 
+    console.log(data);
+
     for(var i = 0; i < data.length; i++) {
         var opt = data[i];
         var el = document.createElement("option");
