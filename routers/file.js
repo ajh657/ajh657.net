@@ -37,7 +37,11 @@ router.post('/upload', (req,res) => {
 router.post('/download', (req,res) => {
     var filePath = path.resolve(__dirname + '/../files/' + req.body.file);
     console.log(filePath);
-    decrypt(filePath.slice(0, filePath.length-6),req.body.password,req,res);
+    if (decrypt(filePath.slice(0, filePath.length-6),req.body.password,req,res)) {
+        res.download(filePath.slice(0, filePath.length-6)).send('success');
+    } else{
+        res.status(500).send('error')
+    }
 })
 
 router.get('/getFiles', (req,res) => {
