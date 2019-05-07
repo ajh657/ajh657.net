@@ -37,7 +37,7 @@ router.post('/upload', (req,res) => {
 router.post('/download', (req,res) => {
     var filePath = path.resolve(__dirname + '/../files/' + req.body.fileName);
     
-    decrypt(filePath,req.body.password,req,res);
+    decrypt(filePath.slice(0, -6),req.body.password,req,res);
 })
 
 router.get('/getFiles', (req,res) => {
@@ -63,15 +63,17 @@ function encrypt(file,password,req,res) {
 }
 
 function decrypt(file,password,req,res) {
-    nodecipher.decryptSync({
-        output: file,
-        input: file + '.cast5',
-        password:password
-    }, (err,opts) => {
-        if(err) failDecrypt(file,req,res);
-
-        
-    })
+    try {
+        nodecipher.decryptSync({
+            output: file,
+            input: file + '.cast5',
+            password:password
+        })
+    } catch (e) {
+        console.log(e)
+        return false;
+    }
+    return true;
 }
 
 function failEncrypt(file,err) {
@@ -79,10 +81,6 @@ function failEncrypt(file,err) {
     if(fs.existsSync(file)) fs.unlinkSync(file);
     console.log(err)
     return false;
-}
-
-function failDecrypt(file) {
-    res.status(500).send('error');
 }
 
 module.exports = router;
