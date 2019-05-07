@@ -13,7 +13,7 @@ function getFiles() {
 
 function httpRequest(url) {
     const Http = new XMLHttpRequest();
-    Http.open("GET", url);
+    Http.open("GET", url, false);
     Http.send();
     Http.onreadystatechange=(e)=>{
         console.log(Http.responseText)
