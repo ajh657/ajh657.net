@@ -39,9 +39,8 @@ router.post('/download', (req,res) => {
     console.log(filePath);
     console.log(filePath.slice(0, filePath.length-6));
     if (decrypt(filePath.slice(0, filePath.length-6),req.body.password,req,res)) {
-        res.sendFile(filePath.slice(0, filePath.length-6));
+        res.sendFile(filePath.slice(0, filePath.length-6)).send('ok');
         fs.unlinkSync(filePath.slice(0, filePath.length-6));
-        res.send('ok');
     } else{
         res.status(500).send('error')
     }
