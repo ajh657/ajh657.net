@@ -12,7 +12,6 @@ router.post('/upload', (req,res) => {
     if (Object.keys(req.files).length == 0) {
         return res.status(400).send('File not uploaded');
     }
-    console.log(Object.keys(req.files).length == 0)
     let uploadedFile = req.files.file
 
     var uploadPath = path.resolve(__dirname + '/../files/' + uploadedFile.name);
@@ -21,8 +20,6 @@ router.post('/upload', (req,res) => {
         if(err) return res.status(500).send(err)
 
         var test = encrypt(uploadPath,req.body.password,req,res);
-
-        console.log(test);
 
         if (encrypt(uploadPath,req.body.password,req,res)) {
             fs.unlinkSync(uploadPath);
@@ -36,8 +33,6 @@ router.post('/upload', (req,res) => {
 
 router.post('/download', (req,res) => {
     var filePath = path.resolve(__dirname + '/../files/' + req.body.file);
-    console.log(filePath);
-    console.log(filePath.slice(0, filePath.length-6));
     if (decrypt(filePath.slice(0, filePath.length-6),req.body.password,req,res)) {
         res.download(filePath.slice(0, filePath.length-6), (err) => {
             fs.unlinkSync(filePath.slice(0, filePath.length-6));
@@ -54,7 +49,6 @@ router.get('/getFiles', (req,res) => {
 })
 
 function encrypt(file,password,req,res) {
-    console.log('here 1')
     try {
         nodecipher.encryptSync({
             input: file,
@@ -65,7 +59,6 @@ function encrypt(file,password,req,res) {
         console.log(e)
         return false;
     }
-    console.log('here 2')
     return true;
 }
 
