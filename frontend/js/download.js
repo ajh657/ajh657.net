@@ -9,7 +9,7 @@ function getFiles() {
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
-        select.appendChild(el);
+        dropdown.appendChild(el);
     }
 }
 
