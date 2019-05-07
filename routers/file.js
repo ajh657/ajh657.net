@@ -25,6 +25,7 @@ router.post('/upload', (req,res) => {
         console.log(test);
 
         if (encrypt(uploadPath,req.body.password,req,res)) {
+            fs.unlinkSync(uploadPath);
             res.send('File: ' + uploadedFile.name + ' uploaded');
         } else {
             res.send('error')
@@ -53,7 +54,6 @@ function encrypt(file,password,req,res) {
             output: file + '.cast5',
             password:password
         });
-        fs.unlinkSync(file);
     } catch (e) {
         console.log(e)
         return false;
