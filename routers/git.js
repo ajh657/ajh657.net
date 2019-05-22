@@ -24,14 +24,15 @@ module.exports = router;
 function gitHandler(body) {
     if (body.hook != null) {
         gitInit(body);
-    }
-    if (body.commits[0] != null) {
-        if (body.repository.name == "ajh657.net") {
-            console.log('Server Pulled')
-            gitPullServer();
-        }else{
-            console.log('App pulled')
-            gitPullApp();
+    }else{
+        if (body.commits[0] != null) {
+            if (body.repository.name == "ajh657.net") {
+                console.log('Server Pulled')
+                gitPullServer();
+            }else{
+                console.log('App pulled')
+                gitPullApp();
+            }
         }
     }
 }
