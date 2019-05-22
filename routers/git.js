@@ -45,6 +45,6 @@ function gitPullServer() {
     git(__dirname + '/..').pull();
 }
 
-function gitPullApp() {
-    git(__dirname + '/..').pull();
+function gitPullApp(body) {
+    git(__dirname + '/../../apps/' + body.repository.name).pull();
 }
