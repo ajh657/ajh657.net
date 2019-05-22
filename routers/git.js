@@ -31,7 +31,7 @@ function gitHandler(body) {
                 gitPullServer();
             }else{
                 console.log('App pulled')
-                gitPullApp();
+                gitPullApp(body);
             }
         }
     }
