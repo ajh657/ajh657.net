@@ -23,20 +23,28 @@ module.exports = router;
 
 function gitHandler(body) {
     if (body.hook != null) {
-        gitInit();
+        gitInit(body);
     }
     if (body.commits[0] != null) {
         if (body.repository.name == "ajh657.net") {
             console.log('Server Pulled')
             gitPullServer();
+        }else{
+            console.log('App pulled')
+            gitPullApp();
         }
     }
 }
 
 function gitInit(body) {
-    git(__dirname + '/../../apps').pull();
+    git().clone(body.repository.git_url,__dirname + '/../../apps/' + body.repository.name);
+    console.log('New repo cloned');
 }
 
-function gitPullServer(body) {
+function gitPullServer() {
+    git(__dirname + '/..').pull();
+}
+
+function gitPullApp() {
     git(__dirname + '/..').pull();
 }
