@@ -111,7 +111,7 @@ router.post('/wf/baro', (req,res) => {
   }
 });
 
-router.post('/wf/Darvo', (req,res) => {
+router.post('/wf/darvo', (req,res) => {
   if (warframe.dailyDeals != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
