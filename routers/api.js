@@ -161,6 +161,16 @@ router.post('/wf/nightwave', (req,res) => {
   }
 });
 
+router.post('/wf/kuva', (req,res) => {
+  if (warframe.kuva != undefined) {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.send(warframe.kuva);
+  } else {
+    res.status(500).send('Internal server error')
+  }
+});
+
 module.exports = router;
 
 sampler.on('sample', function (sample) {
