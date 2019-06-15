@@ -121,6 +121,16 @@ router.post('/wf/darvo', (req,res) => {
   }
 });
 
+router.post('/wf/simaris', (req,res) => {
+  if (warframe.simaris != undefined) {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.send(warframe.simaris);
+  } else {
+    res.status(500).send('Internal server error')
+  }
+});
+
 module.exports = router;
 
 sampler.on('sample', function (sample) {
