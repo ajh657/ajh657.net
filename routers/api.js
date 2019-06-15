@@ -61,6 +61,16 @@ router.post('/wf/events', (req,res) => {
   }
 });
 
+router.post('/wf/sortie', (req,res) => {
+  if (warframe.sortie != undefined) {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.send(warframe.sortie);
+  } else {
+    res.status(500).send('Internal server error')
+  }
+});
+
 module.exports = router;
 
 sampler.on('sample', function (sample) {
