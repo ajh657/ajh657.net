@@ -141,6 +141,16 @@ router.post('/wf/cetusCycle', (req,res) => {
   }
 });
 
+router.post('/wf/vallisCycle', (req,res) => {
+  if (warframe.vallisCycle != undefined) {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.send(warframe.vallisCycle);
+  } else {
+    res.status(500).send('Internal server error')
+  }
+});
+
 module.exports = router;
 
 sampler.on('sample', function (sample) {
