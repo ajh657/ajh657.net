@@ -5,6 +5,9 @@ const cpuu = require('cputilization');
 var sampler = cpuu({
   intercal: 200
 });
+
+console.log("test");
+
 var router = express.Router();
 var cpuUtilization = 0;
 
