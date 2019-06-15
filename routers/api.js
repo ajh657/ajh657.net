@@ -91,6 +91,16 @@ router.post('/wf/fissures', (req,res) => {
   }
 });
 
+router.post('/wf/invasions', (req,res) => {
+  if (warframe.invasions != undefined) {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.send(warframe.invasions);
+  } else {
+    res.status(500).send('Internal server error')
+  }
+});
+
 module.exports = router;
 
 sampler.on('sample', function (sample) {
