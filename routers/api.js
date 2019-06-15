@@ -6,7 +6,9 @@ var sampler = cpuu({
   intercal: 200
 });
 
-console.log("test");
+var warframe;
+
+setInterval(function(){ updateWFData(); }, 120000);
 
 var router = express.Router();
 var cpuUtilization = 0;
@@ -28,8 +30,33 @@ router.post('/stats', (req, res) => {
   res.send(stats);
 });
 
+router.post('/wf', (req,res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.send(warframe);
+});
+
 module.exports = router;
 
 sampler.on('sample', function (sample) {
   cpuUtilization = sample.percentageBusy();
 });
+
+function updateWFData() {
+  https.get('https://api.warframestat.us/pc', (resp) => {
+    let data = '';
+
+    // A chunk of data has been recieved.
+    resp.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    // The whole response has been received. Print out the result.
+    resp.on('end', () => {
+        warframe = JSON.parse(data);
+    });
+
+  }).on('error', (err) => {
+    console.log('Error: ' + err.message);
+  });
+}
