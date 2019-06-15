@@ -9,6 +9,7 @@ var sampler = cpuu({
 
 var warframe;
 
+updateWFData();
 setInterval(function(){ updateWFData(); }, 120000);
 
 var router = express.Router();
