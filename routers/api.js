@@ -39,11 +39,15 @@ router.post('/wf', (req,res) => {
 
 router.post('/wf/news', (req,res) => {
 
-  var news = [warframe.news[warframe.news.length - 4], warframe.news[warframe.news.length - 5], warframe.news[warframe.news.length - 6]];
+  /** var news = [warframe.news[warframe.news.length - 4], warframe.news[warframe.news.length - 5], warframe.news[warframe.news.length - 6]];
 
   res.setHeader('Content-Type', 'application/json');
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.send(news);
+  res.send(news); */
+
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.send(warframe.news); 
 });
 
 module.exports = router;
