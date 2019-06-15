@@ -131,11 +131,11 @@ router.post('/wf/simaris', (req,res) => {
   }
 });
 
-router.post('/wf/cetusCycle', (req,res) => {
-  if (warframe.cetusCycle != undefined) {
+router.post('/wf/arbitration', (req,res) => {
+  if (warframe.arbitration != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.send(warframe.cetusCycle);
+    res.send(warframe.arbitration);
   } else {
     res.status(500).send('Internal server error')
   }
@@ -166,6 +166,16 @@ router.post('/wf/kuva', (req,res) => {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.send(warframe.kuva);
+  } else {
+    res.status(500).send('Internal server error')
+  }
+});
+
+router.post('/wf/arbitration', (req,res) => {
+  if (warframe.arbitration != undefined) {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.send(warframe.arbitration);
   } else {
     res.status(500).send('Internal server error')
   }
