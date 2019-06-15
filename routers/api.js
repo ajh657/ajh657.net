@@ -71,6 +71,16 @@ router.post('/wf/sortie', (req,res) => {
   }
 });
 
+router.post('/wf/syndicateMissions', (req,res) => {
+  if (warframe.syndicateMissions != undefined) {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.send(warframe.syndicateMissions);
+  } else {
+    res.status(500).send('Internal server error')
+  }
+});
+
 module.exports = router;
 
 sampler.on('sample', function (sample) {
@@ -88,7 +98,7 @@ function updateWFData() {
 
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
-        console.log('wf data updated')
+        console.log('WF data updated')
         console.log();
         warframe = JSON.parse(data);
     });
