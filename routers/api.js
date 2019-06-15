@@ -39,10 +39,7 @@ router.post('/wf', (req,res) => {
 
 router.post('/wf/news', (req,res) => {
 
-  var news;
-  news[0] = warframe.news[(warframe.news.length - 1) - 3]
-  news[1] = warframe.news[(warframe.news.length - 1) - 4]
-  news[2] = warframe.news[(warframe.news.length - 1) - 5]
+  var news = [warframe.news[warframe.news.length - 4], warframe.news[warframe.news.length - 5], warframe.news[warframe.news.length - 6]];
 
   res.setHeader('Content-Type', 'application/json');
   res.setHeader("Access-Control-Allow-Origin", "*");
