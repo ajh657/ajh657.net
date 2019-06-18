@@ -10,7 +10,7 @@ async function updateNews () {
 
 function request(type) {
     const Http = new XMLHttpRequest();
-    const url='http://api.ajh657.net/wf/' + type;
+    const url='https://api.ajh657.net/wf/' + type;
     Http.open("POST", url, false);
     Http.send();
 
