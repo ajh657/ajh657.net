@@ -1,24 +1,18 @@
-import { url } from "inspector";
-
 function init() {
     updateNews();
 }
 
-function updateNews () {
-
-  data = request("news");
-
-  console.log(data);
-
-  var news = JSON.parse(data)
-  console.log(news)
-
+async function updateNews () {
+  console.log(request("http://api.ajh657.net/wf/news"))
 }
 
 function request(url) {
-  fetch(url).then(function(data) {
-    return data;
-  }).catch(function(error) {
-    console.log(error)
-  })
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      return this.responseText;
+    }
+};
+xhttp.open("GET", "filename", false);
+xhttp.send();
 }
