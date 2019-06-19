@@ -33,12 +33,12 @@ function createBox(Title ,text, id , rootID) {
   box.id = id;
 
   var boxHeading = document.createElement('div');
-  box.className += "panel-heading"
-  box.id = id + "Heading";
+  boxHeading.className += "panel-heading"
+  boxHeading.id = id + "Heading";
 
   var boxContent = document.createElement('div');
-  box.className += "panel-body"
-  box.id = id + "Content";
+  boxContent.className += "panel-body"
+  boxContent.id = id + "Content";
 
   document.getElementById(rootID).appendChild(box);
   document.getElementById(id).appendChild(boxHeading);
