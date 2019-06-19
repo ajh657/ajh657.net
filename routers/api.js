@@ -32,13 +32,13 @@ router.post('/stats', (req, res) => {
   res.send(stats);
 });
 
-router.post('/wf', (req,res) => {
+router.get('/wf', (req,res) => {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.send(warframe);
 });
 
-router.post('/wf/news', (req,res) => {
+router.get('/wf/news', (req,res) => {
 
   if (warframe.news != undefined) {
     var news = [warframe.news[warframe.news.length - 4], warframe.news[warframe.news.length - 5], warframe.news[warframe.news.length - 6]];
@@ -51,7 +51,7 @@ router.post('/wf/news', (req,res) => {
   }
 });
 
-router.post('/wf/events', (req,res) => {
+router.get('/wf/events', (req,res) => {
   if (warframe.events != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -61,7 +61,7 @@ router.post('/wf/events', (req,res) => {
   }
 });
 
-router.post('/wf/sortie', (req,res) => {
+router.get('/wf/sortie', (req,res) => {
   if (warframe.sortie != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -71,7 +71,7 @@ router.post('/wf/sortie', (req,res) => {
   }
 });
 
-router.post('/wf/syndicateMissions', (req,res) => {
+router.get('/wf/syndicateMissions', (req,res) => {
   if (warframe.syndicateMissions != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -81,7 +81,7 @@ router.post('/wf/syndicateMissions', (req,res) => {
   }
 });
 
-router.post('/wf/fissures', (req,res) => {
+router.get('/wf/fissures', (req,res) => {
   if (warframe.fissures != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -91,7 +91,7 @@ router.post('/wf/fissures', (req,res) => {
   }
 });
 
-router.post('/wf/invasions', (req,res) => {
+router.get('/wf/invasions', (req,res) => {
   if (warframe.invasions != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -101,7 +101,7 @@ router.post('/wf/invasions', (req,res) => {
   }
 });
 
-router.post('/wf/baro', (req,res) => {
+router.get('/wf/baro', (req,res) => {
   if (warframe.voidTrader != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -111,7 +111,7 @@ router.post('/wf/baro', (req,res) => {
   }
 });
 
-router.post('/wf/darvo', (req,res) => {
+router.get('/wf/darvo', (req,res) => {
   if (warframe.dailyDeals != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -121,7 +121,7 @@ router.post('/wf/darvo', (req,res) => {
   }
 });
 
-router.post('/wf/simaris', (req,res) => {
+router.get('/wf/simaris', (req,res) => {
   if (warframe.simaris != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -131,7 +131,7 @@ router.post('/wf/simaris', (req,res) => {
   }
 });
 
-router.post('/wf/arbitration', (req,res) => {
+router.get('/wf/arbitration', (req,res) => {
   if (warframe.arbitration != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -141,7 +141,7 @@ router.post('/wf/arbitration', (req,res) => {
   }
 });
 
-router.post('/wf/vallisCycle', (req,res) => {
+router.get('/wf/vallisCycle', (req,res) => {
   if (warframe.vallisCycle != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -151,7 +151,7 @@ router.post('/wf/vallisCycle', (req,res) => {
   }
 });
 
-router.post('/wf/nightwave', (req,res) => {
+router.get('/wf/nightwave', (req,res) => {
   if (warframe.nightwave != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -161,7 +161,7 @@ router.post('/wf/nightwave', (req,res) => {
   }
 });
 
-router.post('/wf/kuva', (req,res) => {
+router.get('/wf/kuva', (req,res) => {
   if (warframe.kuva != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -171,7 +171,7 @@ router.post('/wf/kuva', (req,res) => {
   }
 });
 
-router.post('/wf/arbitration', (req,res) => {
+router.get('/wf/arbitration', (req,res) => {
   if (warframe.arbitration != undefined) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
