@@ -1,18 +1,22 @@
+
+var news
+
+
 function init() {
-    updateNews();
+    setInterval(httpGetAsync('http://api.ajh657.net/wf/news', updateNews()))
 }
 
-async function updateNews () {
-  console.log(request("http://api.ajh657.net/wf/news"))
+async function updateNews(data) {
+  console.log(data)
 }
 
-function request(url) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      return this.responseText;
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
     }
-};
-xhttp.open("GET", "filename", false);
-xhttp.send();
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
 }
