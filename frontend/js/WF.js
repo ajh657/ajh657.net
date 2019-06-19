@@ -4,8 +4,14 @@ function init() {
 }
 
 async function updateNews () {
-    var news = JSON.parse(request("news"))
-    console.log(news)
+
+  var data = request("news");
+
+  while (data == undefined) {}
+
+  var news = JSON.parse(data)
+  console.log(news)
+
 }
 
 function request(type) {
