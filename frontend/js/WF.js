@@ -9,7 +9,7 @@ function init() {
 
 async function updateNews(data) {
   for (let i = 0; i < data.length; i++) {
-    const element = array[i];
+    const element = data[i];
     createBox(element.message, element.message, element.id, "News")
   }
 }
