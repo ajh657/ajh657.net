@@ -7,6 +7,8 @@ function updateNews () {
 
   data = request("news");
 
+  console.log(data);
+
   var news = JSON.parse(data)
   console.log(news)
 
