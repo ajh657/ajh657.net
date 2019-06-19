@@ -3,7 +3,6 @@ var news
 
 
 function init() {
-  httpGetAsync('http://api.ajh657.net/wf/news', updateNews)
   setInterval(httpGetAsync('http://api.ajh657.net/wf/news', updateNews), 600000)
 }
 
