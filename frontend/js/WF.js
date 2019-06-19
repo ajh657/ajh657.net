@@ -41,6 +41,6 @@ function createBox(Title ,text, id , rootID) {
   box.id = id + "Content";
 
   document.getElementById(rootID).appendChild(box);
-  document.getElementById(box.id).appendChild(boxHeading);
-  document.getElementById(box.id).appendChild(boxContent);
+  document.getElementById(id).appendChild(boxHeading);
+  document.getElementById(id).appendChild(boxContent);
 }
