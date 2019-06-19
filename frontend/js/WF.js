@@ -3,11 +3,9 @@ function init() {
     updateNews();
 }
 
-async function updateNews () {
+function updateNews () {
 
-  var data = request("news");
-
-  while (data == undefined) {}
+  data = request("news");
 
   var news = JSON.parse(data)
   console.log(news)
