@@ -31,7 +31,7 @@ function debug() {
 }
 
 function printDebug(data) {
-  console.log(JSON.parse(data))
+  console.log(data)
 }
 
 function createNewsBox(Title ,text, id , rootID) {
