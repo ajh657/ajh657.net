@@ -9,7 +9,7 @@ function init() {
 async function updateNews(data) {
   for (let i = 0; i < data.length; i++) {
     const element = data[i];
-    createBox(element.message, element.eta, element.id, "News")
+    createNewsBox(element.message, element.eta, element.id, "News")
   }
 }
 
@@ -26,7 +26,15 @@ function httpGetAsync(theUrl, cFunction)
   xmlHttp.send(null);
 }
 
-function createBox(Title ,text, id , rootID) {
+function debug() {
+  httpGetAsync('http://api.ajh657.net/wf', updateNews);
+}
+
+function printDebug(data) {
+  console.log(JSON.parse(data))
+}
+
+function createNewsBox(Title ,text, id , rootID) {
   var box = document.createElement('div');
   box.className += "panel panel-default"
   box.id = id;
