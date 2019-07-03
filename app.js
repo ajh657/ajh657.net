@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(subdomain('file', require('./routers/file')));
 app.use(subdomain('game', require('./routers/game')));
 app.use(subdomain('git', require('./routers/git')));
-app.use(subdomain('api', require('./routers/api')));
+//app.use(subdomain('api', require('./routers/api')));
 
 app.use('/', require('./routers/frontend'));
 
